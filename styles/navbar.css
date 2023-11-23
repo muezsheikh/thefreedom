@@ -103,8 +103,15 @@ nav > ul > li:hover > .dropdown {
 }
 
 @media (max-width: 457px) {
-  .main-logo {
-    justify-content: flex-end;
+  .main-logo .mainLogo {
+    width: 80px;
+    /* border: 1px solid red; */
+  }
+  .main-logo .mainLogo img {
+    width: 100%;
+  }
+  .main-logo .date{
+    display: none;
   }
 }
 .mobScreen {
@@ -187,4 +194,17 @@ nav > ul > li:hover > .dropdown {
   .mobNav {
     width: 100%;
   }
+}
+
+
+.swiper .swiper-button-prev{
+  font-size: 3px;
+  color: white;
+  --swiper-navigation-size: 30px;
+}
+.swiper .swiper-button-next{
+  font-size: 3px;
+  color: white;
+  --swiper-navigation-size: 30px;
+
 }

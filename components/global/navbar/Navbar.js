@@ -11,7 +11,9 @@ export default function Navbar() {
         <div className="date">
           <p>Tuesday, November 21, 2023</p>
         </div>
-        <img src="https://thefreedom.com.pk/wp-content/uploads/2021/10/The-freedom-logoo.png" alt="" />
+        <div className='mainLogo'>
+          <img src="https://thefreedom.com.pk/wp-content/uploads/2021/10/The-freedom-logoo.png" alt="" />
+        </div>
         {/* <img src="/images/logo.png" alt="" /> */}
       </div>
       <div className='largeScreen'>

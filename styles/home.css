@@ -7,13 +7,16 @@
   gap: 10px;
 }
 .heroSection > div {
-  /* width: 50%; */
-  /* border: 1px solid red; */
+}
+.heroSection > .post-style-one{
+  width: 100%;
 }
 .heroBox2 {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  width: 50%;
+
 }
 .heroBox2 > div {
   /* width: 50%; */
@@ -32,11 +35,7 @@
 .heroBox2 > div .body p {
   font-size: 0.8rem;
 }
-@media (max-width: 530px) {
-  .heroSection > .post-style-one .body h1 {
-    font-size: 1rem;
-  }
-}
+
 .post-style-one {
   position: relative;
 }
@@ -213,18 +212,6 @@
 }
 
 @media (max-width: 1200px) {
-  .heroBox2 > div {
-    width: 310px;
-  }
-  .heroBox2 > div .body h1 {
-    font-size: 12px;
-  }
-  .heroBox2 > div .body h3 {
-    font-size: 10px;
-  }
-  .heroBox2 > div .body p {
-    font-size: 10px;
-  }
   .post-style-one .body h1 {
     font-size: 1.5rem;
   }
@@ -243,14 +230,20 @@
 }
 
 @media (max-width: 992px) {
-  .heroBox2 {
-    display: none;
+  .heroSection > .post-style-one .body h3{
+    font-size: .8rem;
+  }
+  .heroSection > .post-style-one .body h1{
+    font-size: 1rem;
+  }
+  .heroSection > .post-style-one .body p{
+    font-size: .8rem;
   }
   .post-style-one .body h1 {
     font-size: 1rem;
   }
   .post-style-one .body p {
-    font-size: 1rem;
+    font-size: .8rem;
   }
   .post-style .body h3 {
     font-size: 8px;
@@ -303,11 +296,25 @@
 }
 
 @media (max-width: 511px) {
+  .post-style-one .body h1 {
+    font-size: .7rem;
+  }
+  
   .section3Container .section3Box .section3BoxC > div {
     display: block;
   }
   .section3Container .section3Box .section3BoxC > div > div {
     width: 100%;
+  }
+  .section3Container .section3Box > div .body h3 {
+    font-size: .6rem;
+  }
+  .section3Container .section3Box > div .body h1 {
+    font-size: .7rem;
+    font-weight: 700;
+  }
+  .section3Container .section3Box > div .body p {
+    font-size: .6rem;
   }
   .section3Container .section3Box .section3BoxC {
     display: grid;
@@ -327,5 +334,11 @@
   .section3Container .section3Box .section3BoxC {
     display: grid;
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 530px) {
+  .heroSection > .post-style-one .body h1 {
+    font-size: .7rem;
   }
 }
