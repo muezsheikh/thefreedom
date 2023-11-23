@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 export default function MobNavLinks() {
   const [activeNav, setActiveNav] = useState(false)
@@ -14,6 +14,27 @@ export default function MobNavLinks() {
   const activeDrop1Func = () => {
     setActiveDrop1(!activeDrop1)
   }
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Check if the navbar is active, and close it if necessary
+      if (activeNav || activeDrop || activeDrop1) {
+        setActiveNav(false);
+        setActiveDrop(false);
+        setActiveDrop1(false);
+      }
+    };
+
+    // Attach the scroll event listener when the component mounts
+    window.addEventListener('scroll', handleScroll);
+
+    // Detach the scroll event listener when the component unmounts
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [activeNav, activeDrop, activeDrop1]);
+
+
 
 
 
