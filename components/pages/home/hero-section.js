@@ -1,9 +1,11 @@
+import Link from 'next/link'
 import React from 'react'
 
 export default function HeroSection() {
   return (
     <div className="container">
     <div className='heroSection'>
+      <Link href='/asd/asd'>
       <div className="post-style-one">
         <div className="img">
           <img src="https://thefreedom.com.pk/wp-content/uploads/2023/07/754e58b5-6d81-49e7-9f0f-b2981deb395a-800x445.jpeg" alt="" />
@@ -14,6 +16,7 @@ export default function HeroSection() {
           <p>November 23, 2023 </p>
         </div>
       </div>
+      </Link>
       <div className='heroBox2'>
       <div className="post-style-one">
         <div className="img">
