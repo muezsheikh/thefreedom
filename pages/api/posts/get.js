@@ -1,0 +1,14 @@
+import connectDb from "@/lib/connect-db";
+import Post from "@/models/post-schema";
+
+export default async function handler(req, res) {
+  await connectDb();
+
+  try {
+    const posts = await Post.find({}).lean();
+    res.status(200).json({ posts });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+}

@@ -1,0 +1,77 @@
+.sidebar .post-style-one .body h3 {
+  font-size: 10px;
+}
+.sidebar .post-style-one .body h1 {
+  font-size: 14px;
+}
+.sidebar .post-style-one .body p {
+  font-size: 10px;
+}
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.sidebar .sidebarBoxes {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.sidebar .sidebarBoxes > div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sidebar .sidebarBoxes > div .body h1 {
+  font-size: 10px;
+}
+
+.sidebar .sidebarOne {
+  background-color: #fff;
+  padding: 10px;
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+    rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+}
+.sidebarOneTitle {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.sidebar .sidebarTwo {
+  background-color: #fff;
+  padding: 10px;
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+    rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+}
+.sidebarTwoTitle {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+.sidebarTwoContent {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+@media (max-width: 992px) {
+  .sidebar .sidebarBoxes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .sidebar .sidebarBoxes > div {
+    display: block;
+    /* width: 80%; */
+    margin: 0 auto;
+    margin-top: 1rem;
+  }
+  .sidebar .sidebarBoxes > div .body p {
+    font-size: 10px;
+  }
+  .sidebar .sidebarBoxes > div .body h3 {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+}
