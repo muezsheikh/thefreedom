@@ -47,7 +47,61 @@
   font-size: 12px;
   font-weight: bold;
 }
+.searchBar {
+  position: absolute;
+  right: 25px;
+  bottom: 10px;
+}
+.searchBar i {
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.searchBar i:hover {
+  color: #67baf1;
+  transform: scale(1.3);
+}
+.searchBarContainer {
+  position: absolute;
+  right: 30px;
+  bottom: -35px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  width: 350px;
+  z-index: 9;
+  background-color: white;
+  visibility: hidden;
+  opacity: 0;
+  transition: all .3s;
+}
 
+@media (max-width: 500px) {
+  .searchBarContainer{
+    width: 250px;
+  }
+  
+}
+.searchBarContainer.activeSI{
+  visibility:visible;
+  opacity: 1;
+}
+
+.searchBarContainer > input {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+.searchBarContainer > input:focus {
+  outline: none;
+  border: none;
+  box-shadow: none;
+}
+.searchBarContainer .searchClickIcon {
+  margin-right: 10px;
+  cursor: pointer;
+}
 nav {
   display: flex;
   justify-content: center;
@@ -55,9 +109,9 @@ nav {
 }
 nav > ul {
   display: flex;
-  gap: .5rem;
+  gap: 0.5rem;
 }
-nav  ul  li {
+nav ul li {
   padding: 10px;
   display: inline-block;
   position: relative;
@@ -73,7 +127,7 @@ nav ul li a {
   transition: color 0.3s, transform 0.3s;
 }
 
-nav  ul  li  a::before {
+nav ul li a::before {
   content: '';
   position: absolute;
   bottom: 0;
@@ -87,12 +141,12 @@ nav  ul  li  a::before {
 }
 
 /* Hover effect */
-nav  ul  li  a:hover {
+nav ul li a:hover {
   color: #67baf1;
   transform: translateY(-3px);
 }
 
-nav  ul  li  a:hover::before {
+nav ul li a:hover::before {
   transform: scaleX(1);
   transform-origin: bottom left;
 }
@@ -135,7 +189,7 @@ nav > ul > li:hover > .dropdown {
   .main-logo .mainLogo img {
     width: 100%;
   }
-  .main-logo .date{
+  .main-logo .date {
     display: none;
   }
 }
@@ -221,15 +275,13 @@ nav > ul > li:hover > .dropdown {
   }
 }
 
-
-.swiper .swiper-button-prev{
+.swiper .swiper-button-prev {
   font-size: 3px;
   color: white;
   --swiper-navigation-size: 30px;
 }
-.swiper .swiper-button-next{
+.swiper .swiper-button-next {
   font-size: 3px;
   color: white;
   --swiper-navigation-size: 30px;
-
 }
