@@ -27,6 +27,7 @@ export default function NavLinks() {
         <li><Link href={'/fashion-and-style'}>Fashion & Style</Link></li>
         <li><Link href={'/sports'}>Sports</Link></li>
         <li><Link href={'/contact'}>Contact</Link></li>
+        
       </ul>
     </nav>
   )

@@ -5,12 +5,19 @@ import MobNavLinks from './mob-nav-Links';
 import Link from 'next/link';
 
 export default function Navbar() {
+   const formatDate = (date) => {
+    const options = { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' };
+    return new Date(date).toLocaleDateString('en-US', options);
+  };
+
+  const currentDate = formatDate(new Date());
+
   return (
     <>
       <Header />
       <div className="main-logo">
         <div className="date">
-          <p>Tuesday, November 21, 2023</p>
+          <p>{currentDate}</p>
         </div>
         <Link href={"/"}>
           <div className='mainLogo'>

@@ -1,4 +1,6 @@
 import React from 'react'
+import MainTags from './MainTags'
+import CatTags from './CatTags'
 
 export default function () {
   return (
@@ -48,38 +50,8 @@ export default function () {
           </div>
         </div>
       </div>
-      <div className="sidebarTwo">
-        <div className="sidebarTwoTitle">
-          <h3>Main Tags</h3>
-        </div>
-        <div className="sidebarTwoContent">
-          <p>Business</p>
-          <p>Business</p>
-          <p>Business</p>
-          <p>Business</p>
-          <p>Business</p>
-          <p>Business</p>
-          <p>Business</p>
-          <p>Business</p>
-          <p>Business</p>
-        </div>
-      </div>
-      <div className="sidebarTwo">
-        <div className="sidebarTwoTitle">
-          <h3>Categories</h3>
-        </div>
-        <div className="sidebarTwoContent">
-          <p>Business</p>
-          <p>Business</p>
-          <p>Business</p>
-          <p>Business</p>
-          <p>Business</p>
-          <p>Business</p>
-          <p>Business</p>
-          <p>Business</p>
-          <p>Business</p>
-        </div>
-      </div>
+      <MainTags/>
+      <CatTags/>
     </div>
   )
 }
