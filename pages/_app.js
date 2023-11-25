@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router'
 import '@/styles/globals.css'
 import '@/styles/navbar.css'
 import '@/styles/home.css'
@@ -5,16 +6,26 @@ import '@/styles/sidebar.css'
 import '@/styles/footer.css'
 import '@/styles/posts.css'
 import '@/styles/contact.css'
+import '@/styles/admin/admin.css'
 import Navbar from '@/components/global/navbar/Navbar'
 import Footer from '@/components/global/footer/Footer'
 
 export default function App({ Component, pageProps }) {
-  return (
+  const router = useRouter()
 
+  // Define an array of routes where you want to hide the Navbar and Footer
+  const routesWithoutNavbarFooter = ['/admin']
+
+  // Check if the current route is in the array
+  const shouldHideNavbarFooter = routesWithoutNavbarFooter.includes(
+    router.pathname
+  )
+
+  return (
     <>
-      <Navbar />
+      {!shouldHideNavbarFooter && <Navbar />}
       <Component {...pageProps} />
-      <Footer />
+      {!shouldHideNavbarFooter && <Footer />}
     </>
   )
 }

@@ -1,0 +1,364 @@
+.adminHeader {
+  background-color: #f2f2f2;
+}
+.adminNav {
+  display: flex;
+  justify-content: center;
+}
+.adminNav ul {
+  display: flex;
+  gap: 10px;
+}
+.adminNav ul li {
+  padding: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s;
+}
+
+.adminNav ul li:hover {
+  background-color: #3498db;
+  color: #fff;
+  border-radius: 4px;
+}
+.activeTab {
+  background-color: #3498db;
+  color: #fff;
+  border-radius: 4px;
+}
+.AdminCrossIcon {
+  display: none;
+}
+.adminNavIcon {
+  display: none;
+}
+
+.newPost {
+  background-color: #f8f8f8;
+  padding: 20px;
+}
+
+.newPostContainer {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.newPostContainer .title {
+  background-color: #3498db;
+  color: #fff;
+  padding: 15px;
+  text-align: center;
+}
+
+.newPostContent {
+  padding: 20px;
+}
+
+.inputGroup {
+  margin-bottom: 15px;
+}
+
+.inputGroup label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.inputGroup input,
+.inputGroup textarea,
+.inputGroup select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+.inputGroupB {
+  display: flex;
+  gap: 10px;
+}
+.inputGroupB input {
+  width: fit-content;
+}
+.uploadText {
+  margin-top: 5px;
+  color: #666;
+}
+
+.checkbox {
+  display: inline-block;
+  margin-left: 5px;
+}
+
+.categories {
+  margin-bottom: 10px;
+}
+
+.submitButton button {
+  background-color: #3498db;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.submitButton button:hover {
+  background-color: #2980b9;
+}
+
+/* posts */
+.allPostsContainer {
+  background-color: #f8f8f8;
+  padding: 20px;
+}
+
+.allPostsContent {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.allPostsContent .title {
+  background-color: #3498db;
+  color: #fff;
+  padding: 15px;
+  text-align: center;
+}
+
+.filterOptions {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.dateSearchSystem input,
+.searchSystem input {
+  padding: 10px;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.postsList {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  padding: 20px;
+}
+
+.postsList .post {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.3s;
+}
+
+.postsList .post:hover {
+  transform: scale(1.05);
+}
+
+.postsList .post .img img {
+  width: 100%;
+  height: auto;
+  border-bottom: 1px solid #ddd;
+}
+
+.postsList .post .body {
+  padding: 15px;
+}
+
+.postsList .post .body .date {
+  margin-top: 10px;
+  color: #777;
+}
+
+.bannerPost {
+  border: 2px solid #3498db;
+}
+
+.bannerTag {
+  background-color: #3498db;
+  color: #fff;
+  padding: 5px;
+  border-radius: 4px;
+  margin-top: 10px;
+}
+.editPostBtn {
+  text-align: center;
+  margin-top: 15px;
+}
+
+.editPostBtn button {
+  background-color: #2ecc71;
+  color: #fff;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.editPostBtn button:hover {
+  background-color: #27ae60;
+}
+
+@media (max-width: 500px) {
+  .filterOptions {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .newPostContainer .title {
+    font-size: 12px;
+  }
+  .AdminCrossIcon {
+    display: block;
+    display: flex;
+    justify-content: flex-end;
+    padding: 1rem;
+    font-size: 1.3rem;
+  }
+  .adminNavIcon {
+    display: block;
+    padding: 10px;
+    font-size: 18px;
+  }
+  .adminNav {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    background-color: white;
+    z-index: 99;
+    width: 80%;
+    flex-direction: column;
+    justify-content: flex-start;
+    left: -100%;
+    transition: all 0.3s;
+  }
+  .adminNav.activeAd {
+    left: 0;
+  }
+
+  .adminNav ul {
+    flex-direction: column;
+    margin-top: 3rem;
+  }
+  .adminNav ul li {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  }
+}
+
+/* comments page */
+
+.commentsPage {
+  background-color: #f8f8f8;
+  padding: 20px;
+}
+
+.commentsPage .title {
+  background-color: #3498db;
+  color: #fff;
+  padding: 15px;
+  text-align: center;
+}
+
+.commentsContainer {
+  margin-top: 20px;
+}
+
+.commentS {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.commentDetails {
+  padding: 15px;
+}
+
+.commentDetails h3 {
+  margin-bottom: 5px;
+}
+
+.repliesContainer {
+  background-color: #f9f9f9;
+  padding: 15px;
+}
+
+.replyS {
+  border-top: 1px solid #ddd;
+  padding: 15px 0;
+}
+
+.replyDetails {
+  padding: 15px;
+}
+
+.replyDetails h4 {
+  margin-bottom: 5px;
+}
+.commentButtons,
+.replyButtons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.commentButtons button,
+.replyButtons button {
+  background-color: #2ecc71;
+  color: #fff;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.commentButtons button:hover,
+.replyButtons button:hover {
+  background-color: #27ae60;
+}
+/* message */
+.messages {
+  background-color: #f8f8f8;
+  padding: 20px;
+}
+.messagesContainer .title {
+  background-color: #3498db;
+  color: #fff;
+  padding: 15px;
+  text-align: center;
+}
+
+.messagesContent {
+  margin-top: 20px;
+}
+.messagesContent .message {
+  border: 1px solid #ddd;
+  padding: 10px;
+}
+.message .deleteButton {
+  margin-top: 10px;
+  
+}
+.message .deleteButton button {
+  background-color: red;
+  border: none;
+  color: white;
+  padding: 8px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
