@@ -3,6 +3,7 @@ import Header from './Header'
 import NavLinks from './Nav-links'
 import MobNavLinks from './mob-nav-Links'
 import Link from 'next/link'
+import SearchLayout from '../searchPage/SearchLayout'
 
 export default function Navbar() {
   const [activeSearch, setActiveSearch] = useState(false)
@@ -39,13 +40,10 @@ export default function Navbar() {
         <div className='searchBar' onClick={activeSearchFunc}>
           <i className='fas fa-search'></i>
         </div>
-
-        <div className={`searchBarContainer ${activeSearch ? "activeSI" : ""}`}>
-          <input type='text' placeholder='Search...' />
-          <div className='searchClickIcon' onClick={activeSearchFunc}>
-            <i className='fas fa-search'></i>
-          </div>
-        </div>
+        <SearchLayout
+          activeSearch={activeSearch}
+          activeSearchFunc={activeSearchFunc}
+        />
       </div>
       <div className='largeScreen'>
         <NavLinks />
