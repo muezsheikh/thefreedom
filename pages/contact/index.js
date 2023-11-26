@@ -41,7 +41,7 @@ export default function ContactPage() {
       }
 
       // Send post details to the API
-      const response = await fetch('http://localhost:3000/api/message/send', {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/message/send`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

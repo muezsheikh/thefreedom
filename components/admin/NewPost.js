@@ -42,7 +42,7 @@ export default function NewPost() {
         tags: postContent.tags,
         date: currentDate,
       };
-      const {data} = await axios.get(`${process.env.HOST}/api/posts/create`, postDetails);
+      const {data} = await axios.get(`${process.env.NEXT_PUBLIC_HOST}/api/posts/create`, postDetails);
       if (data.success) {
         toast.dismiss(loadingToast);
         toast.success(data.msg, { autoClose: 1500 });

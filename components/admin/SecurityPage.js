@@ -18,7 +18,7 @@ export default function SecurityPage({ setIsUserAdmin }) {
     const loading = toast.info('Verifying...', { autoClose: false })
 
     try {
-      const response = await fetch(`${process.env.HOST}/api/admin-user/get`)
+      const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/admin-user/get`)
       const apiData = await response.json()
       // Assuming the structure of apiData is like { username: '...', password: '...' }
       if (
