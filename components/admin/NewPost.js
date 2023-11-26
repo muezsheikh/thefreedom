@@ -1,104 +1,61 @@
 import React, { useEffect, useState } from 'react'
 import { storages } from '@/utils/fire-base'
-import { ref, listAll, getDownloadURL, uploadBytes } from 'firebase/storage'
-import { imgUploadingFunc } from '@/utils/imgUploading'
+import { ref, getDownloadURL, uploadBytes } from 'firebase/storage'
 import { toast } from 'react-toastify'
 import { useRouter } from 'next/router'
 import { v4 } from 'uuid'
+import axios from 'axios'
 export default function NewPost() {
   const router = useRouter()
-  const [titleContent, setTitleContent] = useState({
+  const [postContent, setPostContent] = useState({
     title: '',
     content: '',
+    banner: false,
+    sCategory: '',
+    nCategory: '',
+    uploadImg: null,
+    tags: [],
+    tagInputValue: ''
   })
-  const [banner, setBanner] = useState(false)
-  const bannerHandler = (e) => {
-    setBanner(e.target.checked)
-  }
-  const [sCategory, setSCategory] = useState('null')
-  const sCategoryHandler = (e) => {
-    setSCategory(e.target.value)
-  }
-  // console.log(sCategory)
-  const [nCategory, setNCategory] = useState('')
-  const nCategoryHandler = (e) => {
-    setNCategory(e.target.value)
-  }
-  // console.log(nCategory)
 
-  const titleContentHandler = (e) => {
-    const name = e.target.name
-    const value = e.target.value
+  const postContentHandler = (name, value) => {
+    setPostContent({ ...postContent, [name]: value })
+  }
+  const handleInputKeydown = (e) => {
+    if (e.key === 'Enter') setPostContent({ ...postContent, tags: [...postContent.tags, e.target.value] })
 
-    setTitleContent({ ...titleContent, [name]: value })
   }
 
-  // useEffect(() => {
-  //   uploadImg && imgUploadingFunc(uploadImg)
-  // }, [uploadImg])
-  const [uploadImg, setUploadImage] = useState()
   const submitFunc = async () => {
     try {
-      // Display loading message
       const loadingToast = toast.info('Submitting...', { autoClose: false });
-  
-  
-      // Upload image to Firebase Cloud
-      const imageRef = ref(storages, `/images/${uploadImg.name + v4()} `);
-      await uploadBytes(imageRef, uploadImg);
-  
-  
-      // Get the download URL of the uploaded image
+      const imageRef = ref(storages, `/images/${postContent.uploadImg.name + v4()} `);
+      await uploadBytes(imageRef, postContent.uploadImg);
       const imageUrl = await getDownloadURL(imageRef);
-  
-  
-      // Get present date in a nice human-readable format
       const currentDate = new Date().toLocaleString();
-  
-      // Create post details object
       const postDetails = {
-        title: titleContent.title,
+        title: postContent.title,
         image: imageUrl,
-        category: sCategory !== 'null' ? sCategory : nCategory,
-        content: titleContent.content,
-        banner: banner,
+        category: !postContent.sCategory ? postContent.sCategory : postContent.nCategory,
+        content: postContent.content,
+        banner: postContent.banner,
+        tags: postContent.tags,
         date: currentDate,
       };
-  
-  
-      // Send post details to the API
-      const response = await fetch('http://localhost:3000/api/posts/create', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(postDetails),
-      });
-  
-  
-      if (response.ok) {
-        // Close the loading message
+      const {data} = await axios.get(`${process.env.HOST}/api/posts/create`, postDetails);
+      if (data.success) {
         toast.dismiss(loadingToast);
-        // Display s success message
-        toast.success('Posted successfully!', { autoClose: 1500 });
-  
-        // Clear the image URL state
-        setUploadImage(null);
-        
-  
-        // Reload the page or handle navigation as needed
+        toast.success(data.msg, { autoClose: 1500 });
         router.reload();
       } else {
-        // Display error message
-        toast.error(`Error posting the data. Status: ${response.status}, ${response.statusText}`);
+        toast.error(data.msg);
       }
     } catch (error) {
       console.error('Error submitting the form:', error);
-      // Display error message
       toast.error(`Error submitting the form. Please try again. ${error.message}`);
     }
   };
-  
+
 
   return (
     <div className='newPost'>
@@ -111,9 +68,9 @@ export default function NewPost() {
             <div className='inputGroup'>
               <label>Title:</label>
               <input
-                onChange={titleContentHandler}
+                onChange={(e) => postContentHandler('title', e.target.value)}
                 name='title'
-                value={titleContent.title}
+                value={postContent.title}
                 type='text'
                 placeholder='Enter Title...'
               />
@@ -122,8 +79,8 @@ export default function NewPost() {
               <label>Content:</label>
               <textarea
                 placeholder='Enter Content...'
-                onChange={titleContentHandler}
-                value={titleContent.content}
+                onChange={(e) => postContentHandler('content', e.target.value)}
+                value={postContent.content}
                 name='content'
               ></textarea>
             </div>
@@ -131,19 +88,19 @@ export default function NewPost() {
               <label>Upload Image:</label>
               <input
                 type='file'
-                onChange={(e) => setUploadImage(e.target.files[0])}
+                onChange={(e) => postContentHandler('uploadImg', e.target.files[0])}
               />
               <p className='uploadText'>Upload Image</p>
             </div>
             <div className='inputGroup inputGroupB'>
               <label>Banner</label>
-              <input type='checkbox' onChange={bannerHandler} />
+              <input type='checkbox' onChange={(e) => postContentHandler('banners', e.target.checked)} />
             </div>
             <div className='inputGroup'>
               <div className='categories'>
                 <label>Select Category:</label>
-                <select onChange={sCategoryHandler} defaultValue={'null'}>
-                  <option value={'null'}>No Selected Category</option>
+                <select onChange={(e) => postContentHandler('sCategory', e.target.value)} defaultValue={null}>
+                  <option value={null}>No Selected Category</option>
                   <option value='business'>Business</option>
                   <option value='technology'>Technology</option>
                   <option value='travel'>Travel</option>
@@ -152,19 +109,32 @@ export default function NewPost() {
                   <option value='other'>Other</option>
                 </select>
               </div>
-              {sCategory === 'null' && (
+              {!postContent.sCategory && (
                 <div className='newCategory'>
                   <label>Add New Category:</label>
                   <div className='input'>
                     <input
                       type='text'
-                      onChange={nCategoryHandler}
-                      value={nCategory}
+                      onChange={() => postContentHandler('nCategory', e.target.value)}
+                      value={postContent.nCategory}
                       placeholder='Write New Category Name'
                     />
                   </div>
                 </div>
               )}
+              <div className='inputGroup'>
+                <label>Tags:</label>
+                <input
+                  onKeyDown={handleInputKeydown}
+                  type='text'
+                  placeholder='Enter Tags...'
+                />
+                <div style={{ display: 'flex', gap: '10px' }}>
+                  {postContent.tags.map((tag, ind) => (
+                    <span key={ind}>{tag}</span>
+                  ))}
+                </div>
+              </div>
             </div>
             <div className='submitButton'>
               <button onClick={submitFunc}>Add Post</button>

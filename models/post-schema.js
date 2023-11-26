@@ -6,6 +6,7 @@ const postSchema = new mongoose.Schema({
   category: String,
   content: String,
   banner: Boolean,
+  tags: Array,
   date: String
 })
 
