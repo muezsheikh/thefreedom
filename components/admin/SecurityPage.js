@@ -18,17 +18,16 @@ export default function SecurityPage({ setIsUserAdmin }) {
     const loading = toast.info('Verifying...', { autoClose: false })
 
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/admin-user/get`)
+      const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/admin-user/get?username=${inputs.username}&password=${inputs.password}`)
       const apiData = await response.json()
       // Assuming the structure of apiData is like { username: '...', password: '...' }
-      if (
-        inputs.username === apiData.users[0].username &&
-        inputs.password === apiData.users[0].password
-      ) {
+      console.log(apiData.verified)
+      if (apiData.verified) {
         // Data matched
         toast.dismiss(loading)
         toast.success('Verified', { autoClose: 1500 })
-        setIsUserAdmin(true)
+        setIsUserAdmin(apiData.verified)
+
       } else {
         // Data did not match
         toast.dismiss(loading)
