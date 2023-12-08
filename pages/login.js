@@ -35,7 +35,7 @@ export default function Component() {
           </div>
         </div>
       }
-      {session && session?.user?.name !== 'muezsheikh' &&
+      {session && session?.user?.name !== process.env.NEXT_PUBLIC_ADMIN_URL &&
         <div className="loginContainer">
           <div className="title">
             <h1>Sorry! only Admins can sign in.🙂</h1>
@@ -45,7 +45,7 @@ export default function Component() {
           </div>
         </div>
       }
-      {session?.user?.name === 'muezsheikh' &&
+      {session?.user?.name === process.env.NEXT_PUBLIC_ADMIN_URL &&
         <div className="loginContainer">
           <div className="title">
             <h1>Glad to see you BOSS!🤗</h1>
