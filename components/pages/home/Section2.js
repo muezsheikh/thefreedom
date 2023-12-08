@@ -1,71 +1,77 @@
-import React from 'react'
+import axios from 'axios'
+import Link from 'next/link'
+import React, { useState, useEffect } from 'react'
 
-export default function Section2() {
+export default function Section2({loading, posts}) {
+  const pakPosts = posts.filter(item=> item.category === 'pakistan')
+  
   return (
     <div className='section2MainContainer sectionContainer'>
-      <div className="sectionContainerTitle">
-        <h3>Business</h3>
-        <p>View All</p>
+      <div className='sectionContainerTitle'>
+        <h3>Pakistan</h3>
+        <Link href={'/pakistan'}>
+          <p>View All</p>
+        </Link>
       </div>
-      <div className="section2Container">
-        <div className="post-style-one">
-          <div className="img">
-            <img src="https://thefreedom.com.pk/wp-content/uploads/2023/02/A90E4B50-B5B7-4507-9C44-16FA56CBFC2F-390x205.jpeg" alt="" />
-          </div>
-          <div className="body">
-            <h3>Pakistan</h3>
-            <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis, repellat.</h1>
-            <p>November 23, 2023</p>
-          </div>
-        </div>
-        <div className="section2Boxes">
-          <div className="post-style">
-            <div className="img">
-              <img src="https://thefreedom.com.pk/wp-content/uploads/2022/10/np_file_190131-1-130x90.jpeg" alt="" />
+      <div className='section2Container'>
+        {loading ? (
+          <>
+            <div className='heroSkeletonContainer'>
+              <div className='skeleton-element'></div>
+            </div>
+          </>
+        ) : (
+          <>
+            <div className='post-style-one'>
+              <div className='img'>
+                {pakPosts && <img src={pakPosts[0]?.image} alt='' />}
+              </div>
+              <div className='body'>
+                <h3>{pakPosts[0]?.category}</h3>
+                <Link
+                  href={`/${pakPosts[0]?.category}/${pakPosts[0]?.date}/${pakPosts[0]?._id}`}
+                >
+                  <h1>{pakPosts[0]?.title}</h1>
+                </Link>
+                <p>{pakPosts[0]?.date}</p>
+              </div>
+            </div>
+          </>
+        )}
 
-            </div>
-            <div className="body">
-              <h3 className='categoryName'>Australia</h3>
-              <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat numquam omnis aperiam optio. Expedita, eum.</h1>
-              <p>February 23, 2023</p>
-            </div>
-          </div>
-          <div className="post-style">
-            <div className="img">
-              <img src="https://thefreedom.com.pk/wp-content/uploads/2022/10/np_file_190131-1-130x90.jpeg" alt="" />
-
-            </div>
-            <div className="body">
-              <h3 className='categoryName'>Australia</h3>
-              <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat numquam omnis aperiam optio. Expedita, eum.</h1>
-              <p>February 23, 2023</p>
-            </div>
-          </div>
-          <div className="post-style">
-            <div className="img">
-              <img src="https://thefreedom.com.pk/wp-content/uploads/2022/10/np_file_190131-1-130x90.jpeg" alt="" />
-
-            </div>
-            <div className="body">
-              <h3 className='categoryName'>Australia</h3>
-              <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat numquam omnis aperiam optio. Expedita, eum.</h1>
-              <p>February 23, 2023</p>
-            </div>
-          </div>
-          <div className="post-style">
-            <div className="img">
-              <img src="https://thefreedom.com.pk/wp-content/uploads/2022/10/np_file_190131-1-130x90.jpeg" alt="" />
-
-            </div>
-            <div className="body">
-              <h3 className='categoryName'>Australia</h3>
-              <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat numquam omnis aperiam optio. Expedita, eum.</h1>
-              <p>February 23, 2023</p>
-            </div>
-          </div>
+        <div className='section2Boxes'>
+          {loading ? (
+            <>
+              <div className='heroSkeletonContainer heroSkeletonContainerSection2'>
+                <div className='skeleton-element'></div>
+                <div className='skeleton-element'></div>
+                <div className='skeleton-element'></div>
+                <div className='skeleton-element'></div>
+              </div>
+            </>
+          ) : (
+            pakPosts &&
+            pakPosts.slice(0, 4).map((post) => {
+              return (
+                  <div className='post-style' key={post._id}>
+                    <div className='img'>
+                      {post.image && <img src={post?.image} alt='' />}
+                    </div>
+                    <div className='body'>
+                      <h3 className='categoryName'>{post.category}</h3>
+                      <Link 
+                        href={`/${pakPosts[0]?.category}/${pakPosts[0]?.date}/${pakPosts[0]?._id}`}
+                      >
+                        <h1>{post.title}</h1>
+                      </Link>
+                      <p>{post.date}</p>
+                    </div>
+                  </div>
+              )
+            })
+          )}
         </div>
       </div>
-
     </div>
   )
 }

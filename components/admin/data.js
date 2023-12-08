@@ -160,16 +160,11 @@ export const comments = [
 export const adminHeaders = [
   {
     name: 'New Post',
-    tab:'new-post'
+    tab:'newpost'
   },
   {
     name: 'All Posts',
-    tab:'all-posts'
-
-  },
-  {
-    name: 'Comments',
-    tab:'comments'
+    tab:'allposts'
 
   },
   {

@@ -1,6 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import { adminHeaders } from './data'
-export default function AdminHeader({getTab, tab}) {
+import { useRouter } from 'next/router'
+import Link from 'next/link'
+export default function AdminHeader() {
+  const [tab, setTab] = useState('newpost')
+  const router = useRouter()
+  const getTab = (tabName) => {
+    setTab(tabName)
+    router.push(`/admin/${tabName}`)
+
+  }
   const [activeAdminNav, setActiveAdminNav] = useState(false)
   const adminNavFunc = () => {
     setActiveAdminNav(!activeAdminNav)
@@ -33,8 +42,12 @@ export default function AdminHeader({getTab, tab}) {
             <i className='fas fa-xmark'></i>
           </div>
           <ul>
-            {adminHeaders.map((link,ind) => (
-            <li key={ind} className={link.tab === tab ? 'activeTab' : ''} onClick={()=> getTab(link.tab)}>{link.name}</li>
+            {adminHeaders.map((link, ind) => (
+              <li key={ind} className={router.pathname === `/admin/${link.tab}` ? 'activeTab' : ''}>
+                <Link href={`/admin/${link.tab}`} legacyBehavior  >
+                  {link.name}
+                </Link>
+              </li>
             ))}
           </ul>
         </div>

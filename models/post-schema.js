@@ -7,7 +7,8 @@ const postSchema = new mongoose.Schema({
   content: String,
   banner: Boolean,
   tags: Array,
-  date: String
+  date: String,
+  createdAt: { type: Date, default: Date.now }
 })
 
 export default mongoose.models.posts || mongoose.model('posts', postSchema)

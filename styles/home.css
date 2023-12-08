@@ -27,6 +27,16 @@
 }
 .heroSection .swiper-wrapper {
   width: 33.5%;
+  height: 400px;
+}
+.heroSection .swiper-wrapper .post-style-one-hero {
+  width: 100%;
+  height: 100%;
+}
+.heroSection .swiper-wrapper .post-style-one-hero .img img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 .heroSection .heroBoxes {
   width: 67.5%;
@@ -45,10 +55,13 @@
   left: 0px;
   padding: 10px;
   background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  text-transform: capitalize;
 }
 
 .heroSection .swiper-wrapper .post-style-one .body h3 {
   font-size: 13px;
+  text-transform: capitalize;
 }
 .heroSection .swiper-wrapper .post-style-one .body h1 {
   font-size: 18px;
@@ -97,6 +110,9 @@
   }
 }
 @media (max-width: 500px) {
+  .heroSection .swiper-wrapper {
+    height: auto;
+  }
   .heroSection .swiper-wrapper .post-style-one .body h1 {
     font-size: 14px;
   }
@@ -176,6 +192,12 @@
   box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
     rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
   padding: 10px;
+}
+.section2MainContainer .section2Container .section2Boxes > div .img {
+  width: 15%;
+}
+.section2MainContainer .section2Container .section2Boxes > div .body {
+  width: 85%;
 }
 .section2MainContainer .section2Container .section2Boxes > div .body h3 {
   font-size: 12px;
@@ -285,6 +307,12 @@
   flex-direction: column;
   gap: 10px;
 }
+.sectionContainer .section5Container > div .img {
+  width: 20%;
+}
+.sectionContainer .section5Container > div .body {
+  width: 80%;
+}
 .section4 .section4Container > .post-style-one .body h3 {
   font-size: 14px;
 }
@@ -336,7 +364,11 @@
   width: 70%;
 }
 .section5Container > div .body h3 {
-  font-size: 1rem;
+  font-size: .8rem;
+  text-transform: uppercase;
+}
+.section5Container > div .body p {
+  font-size: .8rem;
   text-transform: uppercase;
 }
 .section5Container > div .body h1 {
@@ -367,3 +399,32 @@
 
 }
 /* section 5 end */
+
+
+/* loading heroSection */
+.heroSkeletonContainer {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px;
+}
+
+.skeleton-element {
+  width: 100%; /* Adjust the width of each skeleton element */
+  height: 400px; /* Adjust the height of each skeleton element */
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite; /* Adjust the animation duration as needed */
+  border-radius: 8px;
+  margin-bottom: 20px; /* Adjust the margin between skeleton elements */
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+

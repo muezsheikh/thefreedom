@@ -9,7 +9,7 @@ export default function Footer() {
         </div>
         <div className="briefDesc">
           <h3>About us</h3>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum obcaecati maiores natus, maxime repellat accusamus?</p>
+          <p>TheFreedom News is your go-to place for informative blog posts covering news, health, education, and the environment. We aim to help you learn and reflect on important topics. Explore the latest updates and thought-provoking ideas on TheFreedom News, where we discuss global events, health insights, and ways to care for the environment together!</p>
         </div>
         <div className="icons">
           <i className="fa-brands fa-facebook-f"></i>

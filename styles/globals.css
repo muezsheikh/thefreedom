@@ -6,6 +6,7 @@
   padding: 0;
   text-decoration: none;
   list-style-type: none;
+  
 }
 body {
   font-family: 'Nunito Sans', sans-serif;
@@ -85,9 +86,20 @@ textarea:focus {
 }
 
 
-.post-style-one .body h1,.post-style .body h1 {
+.post-style-one .body q,.post-style .body h1 {
   transition: all .3s;
   cursor: pointer;
+}
+.post-style-one .body ,.post-style .body  {
+  text-transform: capitalize;
+}
+.post-style-one .body a {
+  transition: all .3s;
+  cursor: pointer;
+  color: white;
+}
+.post-style .body a{
+  color: black;
 }
 .post-style-one .body h1:hover,.post-style .body h1:hover {
   color: #3498db;
@@ -105,4 +117,11 @@ textarea:focus {
 
 .post-style:hover .img img, .post-style-one:hover .img img{
   transform: scale(1.1);
+}
+
+
+.heroSkeletonContainerSection2{ 
+  display: flex;
+  flex-direction: column;
+  max-height: 400px;
 }

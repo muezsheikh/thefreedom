@@ -1,73 +1,52 @@
+import Link from 'next/link'
 import React from 'react'
 
-export default function Section3() {
+export default function Section3({ posts, loading }) {
+  const enPosts = posts.filter((item) => item.category == 'environment')
+
   return (
     <div className='sectionContainer section3'>
-      <div className="sectionContainerTitle">
-        <h3>History</h3>
-        <p>View All</p>
+      <div className='sectionContainerTitle'>
+      <Link style={{color: 'black'}} href={'/environment'}>
+
+        <h3>Environment</h3>
+        </Link>
+
+        <Link href={'/environment'}>
+          <p>View All</p>
+        </Link>
       </div>
-      <div className="section3Container">
-        <div className="post-style">
-          <div className="img">
-            <img src="https://thefreedom.com.pk/wp-content/uploads/2023/07/0ba11419-1135-4189-8747-73de4a211354-800x445.jpeg" alt="" />
-          </div>
-          <div className="body">
-            <h3>Business</h3>
-            <h1>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dignissimos aliquid quibusdam doloribus illum totam voluptatem!</h1>
-            <p>November 23, 2023</p>
-          </div>
-        </div>
-        <div className="post-style">
-          <div className="img">
-            <img src="https://thefreedom.com.pk/wp-content/uploads/2023/07/0ba11419-1135-4189-8747-73de4a211354-800x445.jpeg" alt="" />
-          </div>
-          <div className="body">
-            <h3>Business</h3>
-            <h1>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dignissimos aliquid quibusdam doloribus illum totam voluptatem!</h1>
-            <p>November 23, 2023</p>
-          </div>
-        </div>
-        <div className="post-style">
-          <div className="img">
-            <img src="https://thefreedom.com.pk/wp-content/uploads/2023/07/0ba11419-1135-4189-8747-73de4a211354-800x445.jpeg" alt="" />
-          </div>
-          <div className="body">
-            <h3>Business</h3>
-            <h1>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dignissimos aliquid quibusdam doloribus illum totam voluptatem!</h1>
-            <p>November 23, 2023</p>
-          </div>
-        </div>
-        <div className="post-style">
-          <div className="img">
-            <img src="https://thefreedom.com.pk/wp-content/uploads/2023/07/0ba11419-1135-4189-8747-73de4a211354-800x445.jpeg" alt="" />
-          </div>
-          <div className="body">
-            <h3>Business</h3>
-            <h1>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dignissimos aliquid quibusdam doloribus illum totam voluptatem!</h1>
-            <p>November 23, 2023</p>
-          </div>
-        </div>
-        <div className="post-style">
-          <div className="img">
-            <img src="https://thefreedom.com.pk/wp-content/uploads/2023/07/0ba11419-1135-4189-8747-73de4a211354-800x445.jpeg" alt="" />
-          </div>
-          <div className="body">
-            <h3>Business</h3>
-            <h1>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dignissimos aliquid quibusdam doloribus illum totam voluptatem!</h1>
-            <p>November 23, 2023</p>
-          </div>
-        </div>
-        <div className="post-style">
-          <div className="img">
-            <img src="https://thefreedom.com.pk/wp-content/uploads/2023/07/0ba11419-1135-4189-8747-73de4a211354-800x445.jpeg" alt="" />
-          </div>
-          <div className="body">
-            <h3>Business</h3>
-            <h1>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dignissimos aliquid quibusdam doloribus illum totam voluptatem!</h1>
-            <p>November 23, 2023</p>
-          </div>
-        </div>
+      <div className='section3Container'>
+        {loading ? (
+          <>
+            <div className='heroSkeletonContainer' style={{width: "100%"}}> 
+              <div className='skeleton-element' style={{width: "100%"}}></div>
+            </div>
+          </>
+        ) : (
+          enPosts &&
+          enPosts.slice(0, 6).map((post) => {
+            return (
+                <div className='post-style' key={post._id}>
+                  <div className='img'>
+                    {post.image &&
+                    <img
+                      src={post.image}
+                      alt=''
+                    />
+                    }
+                  </div>
+                  <div className='body'>
+                    <h3>{post.category}</h3>
+                    <h1>
+                      {post.title}
+                    </h1>
+                    <p>{post.date}</p>
+                  </div>
+                </div>
+            )
+          })
+        )}
       </div>
     </div>
   )

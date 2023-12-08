@@ -1,81 +1,44 @@
 import React from 'react'
 import PageLayout from '../home/PageLayout'
+import Link from 'next/link'
 
-export default function PostsLayout() {
+export default function PostsLayout({ posts, loading, postCategory }) {
+  const filteredPosts = posts?.filter((post) => post.category === postCategory)
+  console.log(filteredPosts)
   return (
     <PageLayout>
-      <div className="postsContainer">
-        <div className="post-style">
-          <div className="img">
-            <img src="https://thefreedom.com.pk/wp-content/uploads/2023/07/0ba11419-1135-4189-8747-73de4a211354-800x445.jpeg" alt="" />
+      <div className='postsPage'>
+        <div className='post-style-one'>
+          <div className='img'>
+            {filteredPosts && <img src={filteredPosts[0]?.image} alt='' />}
           </div>
-          <div className="body">
-            <h3>Business</h3>
-            <h1>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dignissimos aliquid quibusdam doloribus illum totam voluptatem!</h1>
-            <p>November 23, 2023</p>
-          </div>
-        </div>
-        <div className="post-style">
-          <div className="img">
-            <img src="https://thefreedom.com.pk/wp-content/uploads/2023/07/0ba11419-1135-4189-8747-73de4a211354-800x445.jpeg" alt="" />
-          </div>
-          <div className="body">
-            <h3>Business</h3>
-            <h1>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dignissimos aliquid quibusdam doloribus illum totam voluptatem!</h1>
-            <p>November 23, 2023</p>
+          <div className='body'>
+            <h3>{filteredPosts[0]?.category}</h3>
+            <Link
+              href={`/${filteredPosts[0]?.category}/${filteredPosts[0]?.date}/${filteredPosts[0]?._id}`}
+            >
+              <h1>{filteredPosts[0]?.title}</h1>
+            </Link>
+            <p>{filteredPosts[0]?.date}</p>
           </div>
         </div>
-        <div className="post-style">
-          <div className="img">
-            <img src="https://thefreedom.com.pk/wp-content/uploads/2023/07/0ba11419-1135-4189-8747-73de4a211354-800x445.jpeg" alt="" />
-          </div>
-          <div className="body">
-            <h3>Business</h3>
-            <h1>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dignissimos aliquid quibusdam doloribus illum totam voluptatem!</h1>
-            <p>November 23, 2023</p>
-          </div>
-        </div>
-        <div className="post-style">
-          <div className="img">
-            <img src="https://thefreedom.com.pk/wp-content/uploads/2023/07/0ba11419-1135-4189-8747-73de4a211354-800x445.jpeg" alt="" />
-          </div>
-          <div className="body">
-            <h3>Business</h3>
-            <h1>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dignissimos aliquid quibusdam doloribus illum totam voluptatem!</h1>
-            <p>November 23, 2023</p>
-          </div>
-        </div>
-        <div className="post-style">
-          <div className="img">
-            <img src="https://thefreedom.com.pk/wp-content/uploads/2023/07/0ba11419-1135-4189-8747-73de4a211354-800x445.jpeg" alt="" />
-          </div>
-          <div className="body">
-            <h3>Business</h3>
-            <h1>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dignissimos aliquid quibusdam doloribus illum totam voluptatem!</h1>
-            <p>November 23, 2023</p>
-          </div>
-        </div>
-        <div className="post-style">
-          <div className="img">
-            <img src="https://thefreedom.com.pk/wp-content/uploads/2023/07/0ba11419-1135-4189-8747-73de4a211354-800x445.jpeg" alt="" />
-          </div>
-          <div className="body">
-            <h3>Business</h3>
-            <h1>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dignissimos aliquid quibusdam doloribus illum totam voluptatem!</h1>
-            <p>November 23, 2023</p>
-          </div>
-        </div>
-        <div className="post-style">
-          <div className="img">
-            <img src="https://thefreedom.com.pk/wp-content/uploads/2023/07/0ba11419-1135-4189-8747-73de4a211354-800x445.jpeg" alt="" />
-          </div>
-          <div className="body">
-            <h3>Business</h3>
-            <h1>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dignissimos aliquid quibusdam doloribus illum totam voluptatem!</h1>
-            <p>November 23, 2023</p>
-          </div>
-        </div>
-
+      </div>
+      <div className='postsContainer'>
+        {filteredPosts &&
+          filteredPosts.map((post) => (
+            <div className='post-style'>
+              <div className='img'>
+                <img src={post.image} alt='' />
+              </div>
+              <div className='body'>
+                <h3>{post.category}</h3>
+                <Link href={`/${post.category}/${post.date}/${post._id}`}>
+                  <h1>{post.title}</h1>
+                </Link>
+                <p>{post.date}</p>
+              </div>
+            </div>
+          ))}
       </div>
     </PageLayout>
   )

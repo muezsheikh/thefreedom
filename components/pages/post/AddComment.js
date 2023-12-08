@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-export default function AddComment() {
+export default function AddComment({commentsData, postComment, inputChangeHandler}) {
+ 
   return (
     <div class="AwesomeCommentSection">
       <div class="commentTitle">
@@ -10,17 +11,17 @@ export default function AddComment() {
       </div>
       <div class="commentContent">
         <div class="inputGroup">
-          <input type="text" placeholder="Your Name*" />
+          <input name='name' value={commentsData.name}  onChange={inputChangeHandler} type="text" placeholder="Your Name*" />
         </div>
         <div class="inputGroup">
-          <input type="email" placeholder="Your Email*" />
+          <input name='email'  value={commentsData.email} onChange={inputChangeHandler} type="email" placeholder="Your Email*" />
         </div>
         <div class="inputGroup">
-          <textarea placeholder="Your Amazing Comment*"></textarea>
+          <textarea name='comment'  value={commentsData.comment} onChange={inputChangeHandler} placeholder="Your Comment*"></textarea>
         </div>
       </div>
       <div class="submitBtn">
-        <button>Post Your Thoughts</button>
+        <button onClick={postComment}>Post Your Thoughts</button>
       </div>
     </div>
   )

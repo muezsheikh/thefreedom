@@ -1,65 +1,37 @@
 import React from 'react'
+import Link from 'next/link'
+export default function Section5({ posts }) {
+  const faPosts = posts?.filter((item) => item.category == 'fashion-and-style')
 
-export default function Section5() {
   return (
     <div className='sectionContainer section5'>
-      <div className="sectionContainerTitle">
-        <h3>Crypto</h3>
-        <p>View All</p>
+      <div className='sectionContainerTitle'>
+        <Link style={{ color: 'black' }} href={'/fashion-and-style'}>
+          <h3>Fashion And Style</h3>
+        </Link>
+
+        <Link href={'/fashion-and-style'}>
+          <p>View All</p>
+        </Link>
       </div>
-      <div className="section5Container">
-      <div className="post-style">
-          <div className="img">
-            <img src="https://thefreedom.com.pk/wp-content/uploads/2023/07/0ba11419-1135-4189-8747-73de4a211354-800x445.jpeg" alt="" />
+      <div className='section5Container'>
+        {faPosts.map((post) => (
+          <div className='post-style' key={post._id}>
+            {post.image && (
+              <div className='img'>
+                <img src={post.image} alt='' />
+              </div>
+            )}
+            <div className='body'>
+              <h3>{post.category}</h3>
+              <Link href={`/${post.category}/${post.date}/${post._id}`}>
+                <h1>{post.title}</h1>
+              </Link>
+              <p>{post.date}</p>
+            </div>
           </div>
-          <div className="body">
-            <h3>Business</h3>
-            <h1>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dignissimos aliquid quibusdam doloribus illum totam voluptatem!</h1>
-            <p>November 23, 2023</p>
-          </div>
-        </div>
-      <div className="post-style">
-          <div className="img">
-            <img src="https://thefreedom.com.pk/wp-content/uploads/2023/07/0ba11419-1135-4189-8747-73de4a211354-800x445.jpeg" alt="" />
-          </div>
-          <div className="body">
-            <h3>Business</h3>
-            <h1>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dignissimos aliquid quibusdam doloribus illum totam voluptatem!</h1>
-            <p>November 23, 2023</p>
-          </div>
-        </div>
-      <div className="post-style">
-          <div className="img">
-            <img src="https://thefreedom.com.pk/wp-content/uploads/2023/07/0ba11419-1135-4189-8747-73de4a211354-800x445.jpeg" alt="" />
-          </div>
-          <div className="body">
-            <h3>Business</h3>
-            <h1>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dignissimos aliquid quibusdam doloribus illum totam voluptatem!</h1>
-            <p>November 23, 2023</p>
-          </div>
-        </div>
-      <div className="post-style">
-          <div className="img">
-            <img src="https://thefreedom.com.pk/wp-content/uploads/2023/07/0ba11419-1135-4189-8747-73de4a211354-800x445.jpeg" alt="" />
-          </div>
-          <div className="body">
-            <h3>Business</h3>
-            <h1>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dignissimos aliquid quibusdam doloribus illum totam voluptatem!</h1>
-            <p>November 23, 2023</p>
-          </div>
-        </div>
-      <div className="post-style">
-          <div className="img">
-            <img src="https://thefreedom.com.pk/wp-content/uploads/2023/07/0ba11419-1135-4189-8747-73de4a211354-800x445.jpeg" alt="" />
-          </div>
-          <div className="body">
-            <h3>Business</h3>
-            <h1>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dignissimos aliquid quibusdam doloribus illum totam voluptatem!</h1>
-            <p>November 23, 2023</p>
-          </div>
-        </div>
+        ))}
       </div>
-      
     </div>
   )
 }
