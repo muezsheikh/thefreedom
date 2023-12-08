@@ -77,6 +77,12 @@
     margin: 0 auto;
     margin-top: 1rem;
   }
+  .sidebar .sidebarBoxes > div .img {
+    width: 100%;
+  }
+  .sidebar .sidebarBoxes > div .body {
+    width: 100%;
+  }
   .sidebar .sidebarBoxes > div .body p {
     font-size: 10px;
   }

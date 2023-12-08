@@ -246,6 +246,9 @@
   .section2MainContainer .section2Container .section2Boxes > div {
     flex-direction: column;
   }
+  .section2MainContainer .section2Container .section2Boxes > div .img {
+    width: 100%;
+  }
 }
 
 @media (max-width: 417px) {
