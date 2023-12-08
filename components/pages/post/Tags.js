@@ -7,7 +7,7 @@ export default function Tags({ post }) {
         <h3>Tags:</h3>
       </div>
       <div className="tagsC">
-        {post.tags.map((x, ind) => (
+        {post?.tags?.map((x, ind) => (
           <p key={ind}>{x}</p>
         ))}
       </div>
