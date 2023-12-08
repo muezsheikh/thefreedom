@@ -7,7 +7,7 @@ export default function Component() {
   const { data: session } = useSession()
   const router = useRouter()
     useEffect(() => {
-      if (session && session?.user?.name !== 'muezsheikh') {
+      if (session && session?.user?.name !== process.env.NEXT_PUBLIC_ADMIN_URL) {
         // Set a timeout to call signOut after 10 seconds
         const timeoutId = setTimeout(() => {
           signOut();
