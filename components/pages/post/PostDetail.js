@@ -38,8 +38,6 @@ export default function PostDetail() {
     getUpdatePostData();
 
   }, [router.query]);
-  console.log(router)
-  // console.log(post)
   return (
     <PageLayout>
       <div className="postDetailPage">
@@ -51,14 +49,14 @@ export default function PostDetail() {
           post &&
           <>
             <div className="image">
-              <img src={post.image} alt="" />
+              <img src={post?.image} alt="" />
             </div>
           </>
         )
         }
         {post &&
           <div className="title">
-            <h1>{post.title}</h1>
+            <h1>{post?.title}</h1>
           </div>
         }
         {loading ? (

@@ -25,7 +25,7 @@ export default function PostsLayout({ posts, loading, postCategory }) {
       </div>
       <div className='postsContainer'>
         {filteredPosts &&
-          filteredPosts.map((post) => (
+          filteredPosts?.map((post) => (
             <div className='post-style'>
               <div className='img'>
                 <img src={post.image} alt='' />
