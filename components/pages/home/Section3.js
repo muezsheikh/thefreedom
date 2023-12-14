@@ -38,9 +38,11 @@ export default function Section3({ posts, loading }) {
                   </div>
                   <div className='body'>
                     <h3>{post.category}</h3>
+                    <Link href={`/${post.category}/${post.date}/${post._id}`}>
                     <h1>
                       {post.title}
                     </h1>
+                    </Link>
                     <p>{post.date}</p>
                   </div>
                 </div>
