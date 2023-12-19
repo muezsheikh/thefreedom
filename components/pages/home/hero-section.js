@@ -36,6 +36,7 @@ export default function HeroSection({ posts, loading }) {
             }}
             navigation
             pagination={{ clickable: true }}
+            
           >
             {banners.map((banner) => (
               <SwiperSlide key={banner._id}>
