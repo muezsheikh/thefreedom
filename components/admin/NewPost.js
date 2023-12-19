@@ -204,9 +204,7 @@ export default function NewPost() {
     'bullet',
   ]
 
-  const handleChange = (value) => {
-    setPostContent({ ...postContent, content: value })
-  }
+  
 
   return (
     <div className='newPost'>
@@ -231,7 +229,7 @@ export default function NewPost() {
               <ReactQuill
                 theme='snow'
                 value={postContent.content}
-                onChange={handleChange}
+                onChange={(value)=> postContentHandler('content',value)}
                 modules={modules}
                 formats={formats}
                 placeholder='Enter Content...'
