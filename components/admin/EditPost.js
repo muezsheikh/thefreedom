@@ -149,7 +149,7 @@ const [oldImg, setOldImg] = useState(true)
   
   useEffect(() => {
     getUpdatePostData();
-  }, []);
+  }, [router.query.editpost[1]]);
 
 
   const updateData = async () => {
@@ -209,6 +209,7 @@ const formats = [
 const handleChange = (value) => {
   setPostContent({ ...postContent, content: value })
 }
+console.log('post content', postContent)
   return (
     <div className='newPost'>
       <div className='container'>
