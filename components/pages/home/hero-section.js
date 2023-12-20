@@ -17,73 +17,64 @@ export default function HeroSection({ posts, loading }) {
 
   return (
     <div className='container'>
-      {loading ? (
-        <>
-          <div className='heroSkeletonContainer'>
-            <div className='skeleton-element'></div>
-          </div>
-        </>
-      ) : (
-        <div className='heroSection'>
-          <Swiper
-            // install Swiper modules
-            modules={[Navigation, Pagination, A11y, Autoplay]}
-            spaceBetween={0}
-            slidesPerView={1}
-            autoplay={{
-              disableOnInteraction: false,
-              delay: 2500,
-            }}
-            navigation
-            pagination={{ clickable: true }}
-            
-          >
-            {banners.map((banner) => (
-              <SwiperSlide key={banner._id}>
-                <div className='post-style-one post-style-one-hero'>
-                  <div className='img'>
-                    {banner.image && <img src={banner.image} alt='' />}
-                  </div>
-                  <div className='body'>
-                    {banner.category && (
-                      <h3 className='catHeading'>{banner.category}</h3>
-                    )}
-                    {banner.title && (
-                      <Link
-                        href={`/${banner.category}/${banner.date}/${banner._id}`}
-                        style={{ color: 'white' }}
-                      >
-                        <h1>{banner.title}</h1>
-                      </Link>
-                    )}
-                    {banner.date && <p>{banner.date}</p>}
-                  </div>
+      <div className='heroSection'>
+        <Swiper
+          // install Swiper modules
+          modules={[Navigation, Pagination, A11y, Autoplay]}
+          spaceBetween={0}
+          slidesPerView={1}
+          autoplay={{
+            disableOnInteraction: false,
+            delay: 2500,
+          }}
+          navigation
+          pagination={{ clickable: true }}
+        >
+          {banners.map((banner) => (
+            <SwiperSlide key={banner._id}>
+              <div className='post-style-one post-style-one-hero'>
+                <div className='img'>
+                  {banner.image && <img src={banner.image} alt='' />}
                 </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-          <div className='heroBoxes'>
-            {banners &&
-              banners.slice(0, 2).map((banner) => (
-                <div className='post-style-one' key={banner._id}>
-                  <div className='img'>
-                    <img src={banner.image} alt='' />
-                  </div>
-                  <div className='body'>
-                    <h3>{banner.category}</h3>
+                <div className='body'>
+                  {banner.category && (
+                    <h3 className='catHeading'>{banner.category}</h3>
+                  )}
+                  {banner.title && (
                     <Link
                       href={`/${banner.category}/${banner.date}/${banner._id}`}
                       style={{ color: 'white' }}
                     >
                       <h1>{banner.title}</h1>
                     </Link>
-                    <p>{banner.date}</p>
-                  </div>
+                  )}
+                  {banner.date && <p>{banner.date}</p>}
                 </div>
-              ))}
-          </div>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+        <div className='heroBoxes'>
+          {banners &&
+            banners.slice(0, 2).map((banner) => (
+              <div className='post-style-one' key={banner._id}>
+                <div className='img'>
+                  <img src={banner.image} alt='' />
+                </div>
+                <div className='body'>
+                  <h3>{banner.category}</h3>
+                  <Link
+                    href={`/${banner.category}/${banner.date}/${banner._id}`}
+                    style={{ color: 'white' }}
+                  >
+                    <h1>{banner.title}</h1>
+                  </Link>
+                  <p>{banner.date}</p>
+                </div>
+              </div>
+            ))}
         </div>
-      )}
+      </div>
     </div>
   )
 }
