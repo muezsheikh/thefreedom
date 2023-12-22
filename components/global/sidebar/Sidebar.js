@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import MainTags from './MainTags'
 import CatTags from './CatTags'
 import Link from 'next/link'
@@ -19,6 +19,7 @@ export default function () {
   useEffect(() => {
     getPosts()
   }, [])
+  console.log('posts', posts ) 
 
   return (
     <div className='sidebar'>
@@ -26,7 +27,7 @@ export default function () {
         <div className='sidebarOneTitle'>
           <h3>Recent Posts</h3>
         </div>
-        <div className='post-style-one'>
+        <div className='post-style-ones'>
           <div className='img'>
             <img src={posts[0]?.image} alt='' />
           </div>
@@ -50,7 +51,7 @@ export default function () {
                 <div className='body'>
                   <h3>{post.category}</h3>
                   <Link href={`/${post.category}/${post.date}/${post._id}`}>
-                  <h1>{post.title}</h1>
+                    <h1>{post.title}</h1>
                   </Link>
                   <p>{post.date}</p>
                 </div>

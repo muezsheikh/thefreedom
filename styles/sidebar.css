@@ -1,10 +1,13 @@
-.sidebar .post-style-one .body h3 {
+.sidebar .post-style-ones .body h3 {
   font-size: 10px;
 }
-.sidebar .post-style-one .body h1 {
+.sidebar .post-style-ones .body h1 {
   font-size: 14px;
 }
-.sidebar .post-style-one .body p {
+.sidebar .post-style-ones .body a {
+  color: black;
+}
+.sidebar .post-style-ones .body p {
   font-size: 10px;
 }
 .sidebar {
@@ -12,31 +15,31 @@
   flex-direction: column;
   gap: 10px;
 }
-.sidebar .sidebarBoxes {
+.sidebar .sidebarOne .sidebarBoxes {
   margin-top: 10px;
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
-.sidebar .sidebarBoxes > div {
+.sidebar .sidebarOne .sidebarBoxes > div {
   display: flex;
   align-items: center;
   gap: 10px;
 }
-.sidebar .sidebarBoxes > div .img {
+.sidebar .sidebarOne .sidebarBoxes > div .img {
   width: 30%;
 }
-.sidebar .sidebarBoxes > div .body {
+.sidebar .sidebarOne .sidebarBoxes > div .body {
   width: 70%;
 }
 
-.sidebar .sidebarBoxes > div .body h3 {
+.sidebar .sidebarOne .sidebarBoxes > div .body h3 {
   font-size: 10px;
 }
-.sidebar .sidebarBoxes > div .body h1 {
+.sidebar .sidebarOne .sidebarBoxes > div .body h1 {
   font-size: 10px;
 }
-.sidebar .sidebarBoxes > div .body p {
+.sidebar .sidebarOne .sidebarBoxes > div .body p {
   font-size: 10px;
 }
 
@@ -98,7 +101,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #f2f2f2; 
+  background-color: #f2f2f2;
   padding: 10px;
   margin-bottom: 10px;
   border-radius: 8px;
@@ -106,49 +109,48 @@
 
 .sidebarTwo .sidebarTwoContent > div p {
   margin: 0;
-  font-size: 18px; 
+  font-size: 18px;
 }
 
 .sidebarTwo .sidebarTwoContent > div .tagQuantity {
-  color: #3498db; 
+  color: #3498db;
   font-weight: bold;
   font-size: 16px;
 }
 
-
 /*  */
 .sidebarThree {
-  background-color: #fff; 
-  border: 1px solid #ddd; 
-  border-radius: 8px; 
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
   margin-bottom: 20px;
 }
 
 .sidebarThreeTitle {
-  background-color: #3498db; 
-  color: #fff; 
+  background-color: #3498db;
+  color: #fff;
   padding: 10px;
-  border-top-left-radius: 8px; 
+  border-top-left-radius: 8px;
   border-top-right-radius: 8px;
 }
 
 .sidebarThreeTitle h3 {
-  margin: 0; 
+  margin: 0;
 }
 
 .sidebarThreeContent > div {
-  padding: 15px; 
-  border-bottom: 1px solid #ddd; 
+  padding: 15px;
+  border-bottom: 1px solid #ddd;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 .sidebarThreeContent > div p {
-  margin: 0; 
+  margin: 0;
 }
 
 .catTagQuantity {
-  color: #3498db; 
+  color: #3498db;
   font-weight: bold;
 }
