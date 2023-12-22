@@ -12,7 +12,6 @@ export default function PostDetail() {
   const router = useRouter()
   const [post, setPost] = useState(null)
   const [loading, setLoading] = useState(false)
-  console.log(router)
   const getUpdatePostData = async () => {
     setLoading(true)
     if (!router.query || !router.query.postid) return

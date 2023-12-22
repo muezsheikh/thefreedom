@@ -4,7 +4,6 @@ import ReplyArea from './ReplyArea'
 import AddComment from './AddComment'
 import { toast } from 'react-toastify'
 import axios from 'axios'
-import { useRouter } from 'next/router'
 
 export default function CommentSection({ postId }) {
   const [activeRep, setActiveRep] = useState(false)
@@ -17,7 +16,6 @@ export default function CommentSection({ postId }) {
 const [comments, setComments] = useState([]);
 const getComments = async () => {
   try {
-    toast.info('Loading...'); 
     const response = await axios.get(`${process.env.NEXT_PUBLIC_HOST}/api/posts/comments/get`);
     setComments(response.data.comments);
   } catch (error) {
@@ -31,7 +29,6 @@ const getComments = async () => {
 const [replies, setReplies] = useState([]);
 const getReplies = async () => {
   try {
-    toast.info('Loading...'); 
     const response = await axios.get(`${process.env.NEXT_PUBLIC_HOST}/api/posts/comments/replies/get`);
     setReplies(response.data.replies);
   } catch (error) {
@@ -135,7 +132,6 @@ const getReplies = async () => {
     if (repliesData.comment === '') {
       return toast.info('Comment?', { autoClose: 1500 })
     }
-    console.log(commentId,commenterName)
     try {
       const loadingToast = toast.info('Posting...', { autoClose: false });
 
@@ -188,7 +184,6 @@ const getReplies = async () => {
           <div className="commentsContent">
             {postComments.map((comment) => {
               const singlePostReply = replies.filter((reply) => reply.commentId === comment._id)
-              console.log('singlepostreply', singlePostReply)
               return (
                 <div className="comment" key={comment._id}>
                   <div className="mainComment">

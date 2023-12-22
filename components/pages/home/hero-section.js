@@ -35,13 +35,19 @@ export default function HeroSection({ posts, loading }) {
             }}
             navigation
             pagination={{ clickable: true }}
-            
           >
             {banners.map((banner) => (
               <SwiperSlide key={banner._id}>
                 <div className='post-style-one post-style-one-hero'>
                   <div className='img'>
-                    {banner.image && <img src={banner.image} alt='' />}
+                    {banner.image && (
+                      <Image
+                        src={banner.image}
+                        alt=''
+                        width={500}
+                        height={300}
+                      />
+                    )}
                   </div>
                   <div className='body'>
                     {banner.category && (

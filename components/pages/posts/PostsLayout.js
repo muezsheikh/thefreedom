@@ -4,7 +4,6 @@ import Link from 'next/link'
 
 export default function PostsLayout({ posts, loading, postCategory }) {
   const filteredPosts = posts?.filter((post) => post.category === postCategory)
-  console.log(filteredPosts)
   return (
     <PageLayout>
       {filteredPosts && (

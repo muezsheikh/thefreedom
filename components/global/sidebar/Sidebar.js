@@ -19,7 +19,6 @@ export default function () {
   useEffect(() => {
     getPosts()
   }, [])
-  console.log('posts', posts ) 
 
   return (
     <div className='sidebar'>
