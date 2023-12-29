@@ -111,13 +111,33 @@ export default function AllPosts() {
   const filteredPosts = posts?.posts?.filter((item) => {
     const titleMatches =
       filterSearch &&
-      item.title.toLowerCase().includes(filterSearch.toLowerCase());
-  
-    // Show the item only if titleMatches is true (when search filter is applied)
-    return !filterSearch || titleMatches;
-  });
-  
+      item.title.toLowerCase().includes(filterSearch.toLowerCase())
 
+    // Show the item only if titleMatches is true (when search filter is applied)
+    return !filterSearch || titleMatches
+  })
+
+  const [activeConfirmModal, setActiveConfirmModal] = useState(false)
+  const [delPostDetail, setDelPostDetail] = useState({
+    postId: null,
+    postImg: null,
+  })
+  const activeConfirmModalFunc = (id, image) => {
+    setDelPostDetail({ postId: id, postImg: image })
+    setActiveConfirmModal(!activeConfirmModal)
+    if (!activeConfirmModal) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'auto'
+    }
+  }
+  const deleteFunc = () => {
+    console.log('first')
+    if (delPostDetail.postId || delPostDetail.postImg) {
+      deletePost(delPostDetail.postId, delPostDetail.postImg)
+      activeConfirmModalFunc()
+    }
+  }
   return (
     <div className='allPostsContainer'>
       <div className='container'>
@@ -181,7 +201,10 @@ export default function AllPosts() {
                           Edit Post
                         </button>
                         <button
-                          onClick={() => deletePost(post._id, post.image)}
+                          // onClick={() => deletePost(post._id, post.image)}
+                          onClick={() =>
+                            activeConfirmModalFunc(post._id, post.image)
+                          }
                           className='commentsButton deleteButton'
                         >
                           Delete Post
@@ -197,6 +220,24 @@ export default function AllPosts() {
       </div>
       {commentsS && (
         <AdminComments viewComments={viewComments} postId={postId} />
+      )}
+      {activeConfirmModal && (
+        <div className='modalOverlay'>
+          <div className='confirmModalBox'>
+            <div className='confirmMsg'>
+              <p>
+                Are you sure you want to delete this post? This action cannot be
+                undone.
+              </p>
+            </div>
+            <div className='confirmButtons'>
+              <button className='delBtn' onClick={deleteFunc}>Delete</button>
+              <button className='cnBtn' onClick={activeConfirmModalFunc}>
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   )

@@ -127,14 +127,33 @@ export default function NewPost() {
 
   const submitFunc = async () => {
     try {
+      // Input validation
+      if (!postContent.title || !postContent.content) {
+        // Show message if title or content is missing
+        toast.error('Title and content are required.')
+        return;
+      }
+  
+      if (postContent.banner && !imageUrl) {
+        // Show message if banner is true but no image is uploaded
+        toast.error('Image is required for banner.')
+        return;
+      }
+  
+      if (!postContent.sCategory) {
+        // Show message if category is not selected
+        toast.error('Category is required.')
+        return;
+      }
+  
       const loadingToast = toast.info('Submitting...', { autoClose: false })
-
+  
       const currentDate = new Date().toLocaleDateString('en-US', {
         year: 'numeric',
         month: 'long',
         day: 'numeric',
       })
-
+  
       const postDetails = {
         title: postContent.title,
         image: imageUrl && imageUrl,
@@ -144,12 +163,12 @@ export default function NewPost() {
         tags: postContent.tags,
         date: formattedDate === 'Invalid Date' ? currentDate : formattedDate,
       }
-
+  
       const { data } = await axios.post(
         `${process.env.NEXT_PUBLIC_HOST}/api/posts/create`,
         postDetails
       )
-
+  
       if (data.success) {
         toast.dismiss(loadingToast)
         toast.success(data.msg, { autoClose: 1500 })
@@ -164,6 +183,7 @@ export default function NewPost() {
       )
     }
   }
+  
   const getCategories = async () => {
     try {
       const response = await axios.get(
