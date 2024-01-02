@@ -32,7 +32,7 @@ export default function Navbar() {
         <Link href={'/'}>
           <div className='mainLogo'>
             <img
-              src='https://thefreedom.com.pk/wp-content/uploads/2021/10/The-freedom-logoo.png'
+              src='/images/freedomLogo.png'
               alt=''
             />
           </div>

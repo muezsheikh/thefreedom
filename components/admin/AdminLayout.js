@@ -9,7 +9,7 @@ export default function AdminLayout({ children }) {
       <Link href={'/'}>
         <div className='main-logo'>
           <img
-            src='https://thefreedom.com.pk/wp-content/uploads/2021/10/The-freedom-logoo.png'
+            src='/images/freedomLogo.png'
             alt=''
           />
         </div>
