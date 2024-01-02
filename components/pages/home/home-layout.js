@@ -11,7 +11,7 @@ const Section5 = dynamic(() => import('./Section5'))
 const fetchData = async () => {
   try {
     const response = await axios.get(
-      `${process.env.NEXT_PUBLIC_HOST}/api/posts/get`
+      `https://www.thefreedom.com.pk/api/posts/get`
     )
     return response.data.posts
   } catch (error) {
