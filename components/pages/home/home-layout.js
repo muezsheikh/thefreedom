@@ -10,9 +10,7 @@ const Section5 = dynamic(() => import('./Section5'))
 
 const fetchData = async () => {
   try {
-    const response = await axios.get(
-      `https://www.thefreedom.com.pk/api/posts/get`
-    )
+    const response = await axios.get(`${process.env.NEXT_PUBLIC_HOST}/api/posts/get`)
     return response.data.posts
   } catch (error) {
     console.error('Error fetching posts:', error)
@@ -22,7 +20,7 @@ const fetchData = async () => {
 export default function HomeLayout() {
   const [loading, setLoading] = useState(false)
   const [posts, setPosts] = useState([])
-
+console.log('arrra', posts)
   useEffect(() => {
     const fetchPosts = async () => {
       setLoading(true)
