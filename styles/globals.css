@@ -106,6 +106,10 @@ textarea:focus {
   text-decoration: underline;
 }
 
+.post-style-one .img {
+  height: 100%; 
+  
+}
 .post-style .img, .post-style-one .img {
   overflow: hidden;
   

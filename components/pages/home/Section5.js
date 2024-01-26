@@ -24,7 +24,11 @@ export default function Section5({ posts }) {
             )}
             <div className='body'>
               <h3>{post.category}</h3>
-              <Link href={`/${post.category}/${post.date}/${post._id}`}>
+              <Link
+                href={`/${post?.category}/posts/${
+                  post?.postCustomId ? `${post?.postCustomId}` : `${post?._id}`
+                }`}
+              >
                 <h1>{post.title}</h1>
               </Link>
               <p>{post.date}</p>

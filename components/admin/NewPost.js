@@ -1,17 +1,5 @@
 import React, { useState } from 'react'
-import { storages } from '@/utils/fire-base'
-import {
-  ref,
-  getDownloadURL,
-  uploadBytes,
-  deleteObject,
-} from 'firebase/storage'
-import { toast } from 'react-toastify'
 import { useRouter } from 'next/router'
-import { v4 } from 'uuid'
-import axios from 'axios'
-import AddCategory from './components/AddCategory'
-import dynamic from 'next/dynamic'
 import ReactQuillSection from './newpost/ReactQuillSection'
 import { SubmitBtn } from './newpost/SubmitBtn'
 import Categories from './newpost/Categories'
@@ -31,7 +19,6 @@ export default function NewPost() {
     setFormattedDate(formattedDate)
   }
 
-  const router = useRouter()
   const [postContent, setPostContent] = useState({
     title: '',
     content: '',
@@ -65,9 +52,9 @@ export default function NewPost() {
     newTags.splice(index, 1)
     setPostContent({ ...postContent, tags: newTags })
   }
-  console.log('sssss', postContent.uploadedImageUrl)
-  const [imageUrl, setImageUrl] = useState('')
 
+
+  
   return (
     <div className='newPost'>
       <div className='container'>

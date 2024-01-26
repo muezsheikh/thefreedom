@@ -5,7 +5,6 @@ import { Navigation, Pagination, A11y, Autoplay } from 'swiper/modules'
 
 import { Swiper, SwiperSlide } from 'swiper/react'
 
-
 // Import Swiper styles
 import 'swiper/css'
 import 'swiper/css/navigation'
@@ -56,7 +55,11 @@ export default function HeroSection({ posts, loading }) {
                     )}
                     {banner.title && (
                       <Link
-                        href={`/${banner.category}/${banner.date}/${banner._id}`}
+                        href={`/${banner.category}/posts/${
+                          banner.postCustomId
+                            ? `${banner.postCustomId}`
+                            : `${banner._id}`
+                        }`}
                         style={{ color: 'white' }}
                       >
                         <h1>{banner.title}</h1>
@@ -78,7 +81,11 @@ export default function HeroSection({ posts, loading }) {
                   <div className='body'>
                     <h3>{banner.category}</h3>
                     <Link
-                      href={`/${banner.category}/${banner.date}/${banner._id}`}
+                    href={`/${banner.category}/posts/${
+                      banner.postCustomId
+                        ? `${banner.postCustomId}`
+                        : `${banner._id}`
+                    }`}
                       style={{ color: 'white' }}
                     >
                       <h1>{banner.title}</h1>

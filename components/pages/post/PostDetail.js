@@ -19,14 +19,16 @@ export default function PostDetail() {
     if (!router.query || !router.query.postid) return
     try {
       const postId = router?.query?.postid[1]
-      // let postId = ;
-      const { data } = await axios.get(
-        `${process.env.NEXT_PUBLIC_HOST}/api/posts/onepost/${postId}`
-      )
+      let apiUrl = `${process.env.NEXT_PUBLIC_HOST}/api/posts/onepost/${postId}`
+      let apiUrl2 = `${process.env.NEXT_PUBLIC_HOST}/api/posts/postCustomId/${postId}`
+      const finalUrl = postId >= 34 ? apiUrl2 : apiUrl
+
+      const { data } = await axios.get(finalUrl)
+
       if (data) {
         setPost(data.post)
         setLoading(false)
-        document.title = data.post.title;
+        document.title = data.post.title
       } else {
         router.replace('/404')
       }

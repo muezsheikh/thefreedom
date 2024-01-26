@@ -19,48 +19,46 @@ export default function Section4({ posts, loading }) {
         <div className='section4Container'>
           <div className='post-style-one'>
             <div className='img'>
-              <img
-                src={eduPosts[0]?.image}
-                alt=''
-              />
+              <img src={eduPosts[0]?.image} alt='' />
             </div>
             <div className='body'>
               <Link href={`/${eduPosts[0]?.category}`}>
-              <h3>{eduPosts[0]?.category}</h3>
+                <h3>{eduPosts[0]?.category}</h3>
               </Link>
-              <Link href={`/${eduPosts[0]?.category}/${eduPosts[0]?.date}/${eduPosts[0]?._id}`}>
-              <h1>
-                {eduPosts[0]?.title}
-              </h1>
+              <Link
+                href={`/${eduPosts[0]?.category}/posts/${
+                  eduPosts[0]?.postCustomId
+                    ? `${eduPosts[0]?.postCustomId}`
+                    : `${eduPosts[0]?._id}`
+                }`}
+              >
+                <h1>{eduPosts[0]?.title}</h1>
               </Link>
               <p>{eduPosts[0]?.date}</p>
             </div>
           </div>
           <div className='section4Boxes'>
-            {eduPosts.slice(0,4).map((post)=>(
+            {eduPosts.slice(0, 4).map((post) => (
+              <div className='post-style' key={post._id}>
+                <div className='img'>
+                  {post.image && <img src={post.image} alt='' />}
+                </div>
+                <div className='body'>
+                  <h3>{post.category}</h3>
 
-            <div className='post-style' key={post._id}>
-              <div className='img'>
-                {post.image && 
-                <img
-                  src={post.image}
-                  alt=''
-                />
-                }
+                  <Link
+                    href={`/${post?.category}/posts/${
+                      post?.postCustomId
+                        ? `${post?.postCustomId}`
+                        : `${post?._id}`
+                    }`}
+                  >
+                    <h1>{post.title}</h1>
+                  </Link>
+                  <p>{post.date}</p>
+                </div>
               </div>
-              <div className='body'>
-
-                <h3>{post.category}</h3>
-
-                <Link href={`/${post.category}/${post.date}/${post._id}`}>
-              <h1>
-                {post.title}
-              </h1>
-              </Link>
-                <p>{post.date}</p>
-              </div>
-            </div>
-            ) )}
+            ))}
           </div>
         </div>
       </div>
@@ -77,52 +75,49 @@ export default function Section4({ posts, loading }) {
         <div className='section4Container'>
           <div className='post-style-one'>
             <div className='img'>
-              <img
-                src={spoPosts[0]?.image}
-                alt=''
-              />
+              <img src={spoPosts[0]?.image} alt='' />
             </div>
             <div className='body'>
               <Link href={`/${spoPosts[0]?.category}`}>
-              <h3>{spoPosts[0]?.category}</h3>
+                <h3>{spoPosts[0]?.category}</h3>
               </Link>
-              <Link href={`/${spoPosts[0]?.category}/${spoPosts[0]?.date}/${spoPosts[0]?._id}`}>
-              <h1>
-                {spoPosts[0]?.title}
-              </h1>
+              <Link
+                href={`/${spoPosts[0]?.category}/posts/${
+                  spoPosts[0]?.postCustomId
+                    ? `${spoPosts[0]?.postCustomId}`
+                    : `${spoPosts[0]?._id}`
+                }`}
+              >
+                <h1>{spoPosts[0]?.title}</h1>
               </Link>
               <p>{spoPosts[0]?.date}</p>
             </div>
           </div>
           <div className='section4Boxes'>
-            {spoPosts.slice(0,4).map((post)=>(
+            {spoPosts.slice(0, 4).map((post) => (
+              <div className='post-style' key={post._id}>
+                <div className='img'>
+                  {post.image && <img src={post.image} alt='' />}
+                </div>
+                <div className='body'>
+                  <h3>{post.category}</h3>
 
-            <div className='post-style' key={post._id}>
-              <div className='img'>
-                {post.image && 
-                <img
-                  src={post.image}
-                  alt=''
-                />
-                }
+                  <Link
+                    href={`/${post?.category}/posts/${
+                      post?.postCustomId
+                        ? `${post?.postCustomId}`
+                        : `${post?._id}`
+                    }`}
+                  >
+                    <h1>{post.title}</h1>
+                  </Link>
+                  <p>{post.date}</p>
+                </div>
               </div>
-              <div className='body'>
-
-                <h3>{post.category}</h3>
-
-                <Link href={`/${post.category}/${post.date}/${post._id}`}>
-              <h1>
-                {post.title}
-              </h1>
-              </Link>
-                <p>{post.date}</p>
-              </div>
-            </div>
-            ) )}
+            ))}
           </div>
         </div>
       </div>
-      
     </div>
   )
 }

@@ -16,7 +16,11 @@ export default function PostsLayout({ posts, loading, postCategory }) {
               <div className='body'>
                 <h3>{filteredPosts[0]?.category}</h3>
                 <Link
-                  href={`/${filteredPosts[0]?.category}/${filteredPosts[0]?.date}/${filteredPosts[0]?._id}`}
+                  href={`/${filteredPosts[0]?.category}/posts/${
+                    filteredPosts[0]?.postCustomId
+                      ? `${filteredPosts[0]?.postCustomId}`
+                      : `${filteredPosts[0]?._id}`
+                  }`}
                 >
                   <h1>{filteredPosts[0]?.title}</h1>
                 </Link>
@@ -33,7 +37,13 @@ export default function PostsLayout({ posts, loading, postCategory }) {
                   </div>
                   <div className='body'>
                     <h3>{post.category}</h3>
-                    <Link href={`/${post.category}/${post.date}/${post._id}`}>
+                    <Link
+                      href={`/${post?.category}/posts/${
+                        post?.postCustomId
+                          ? `${post?.postCustomId}`
+                          : `${post?._id}`
+                      }`}
+                    >
                       <h1>{post.title}</h1>
                     </Link>
                     <p>{post.date}</p>

@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose'
 
 const postSchema = new mongoose.Schema({
   title: String,
@@ -8,7 +8,8 @@ const postSchema = new mongoose.Schema({
   banner: Boolean,
   tags: Array,
   date: String,
-  createdAt: { type: Date, default: Date.now }
+  createdAt: { type: Date, default: Date.now },
+  postCustomId: Number,
 })
 
 export default mongoose.models.posts || mongoose.model('posts', postSchema)

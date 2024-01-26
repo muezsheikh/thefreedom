@@ -138,8 +138,7 @@ export default function AllPosts() {
       activeConfirmModalFunc()
     }
   }
-
-  console.log(posts)
+console.log(posts)
   return (
     <div className='allPostsContainer'>
       <div className='container'>

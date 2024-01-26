@@ -33,7 +33,7 @@ export default function () {
           <div className='body'>
             <h3>{posts[0]?.category}</h3>
             <Link
-              href={`/${posts[0]?.category}/${posts[0]?.date}/${posts[0]?._id}`}
+              href={`/${posts[0]?.category}/posts/${posts[0]?.postCustomId}`}
             >
               <h1>{posts[0]?.title}</h1>
             </Link>
@@ -49,7 +49,13 @@ export default function () {
                 </div>
                 <div className='body'>
                   <h3>{post.category}</h3>
-                  <Link href={`/${post.category}/${post.date}/${post._id}`}>
+                  <Link  
+                  href={`/${post.category}/posts/${
+                    post.postCustomId
+                      ? `${post.postCustomId}`
+                      : `${post._id}`
+                  }`}
+                  >
                     <h1>{post.title}</h1>
                   </Link>
                   <p>{post.date}</p>

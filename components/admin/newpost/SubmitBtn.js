@@ -1,26 +1,43 @@
 import axios from 'axios'
 import { storages } from '@/utils/fire-base'
 import { ref, getDownloadURL, uploadBytes } from 'firebase/storage'
-import { v4 } from 'uuid'
-
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
-import React, { useState, useEffect } from 'react'
 import { toast } from 'react-toastify'
 
 export const SubmitBtn = ({ postContent, formattedDate }) => {
-  console.log('image', postContent.uploadedImageUrl)
   const router = useRouter()
   const [imageUrl, setImageUrl] = useState('')
-  const [postDetails, setPostDetails] = useState(null)
+  const [posts, setPosts] = useState([])
+  const getPosts = async () => {
+    try {
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_HOST}/api/posts/get`
+      )
+      setPosts(response.data)
+    } catch (error) {
+      toast.error(
+        `Error: ${error.message || 'An error occurred while fetching data.'}`
+      )
+    } finally {
+      toast.dismiss()
+    }
+  }
+  useEffect(() => {
+    getPosts()
+  }, [])
 
   useEffect(() => {
     if (imageUrl !== '') {
       // Construct postDetails after imageUrl is set
-      const currentDate = new Date().toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-      })
+      const currentDate = new Date()
+      const year = currentDate.getFullYear().toString().slice(2) // Extract last two digits of the year
+      const month = currentDate.toLocaleString('default', { month: 'short' }) // Get abbreviated month name
+      const day = currentDate.getDate() // Get the day of the month
+
+      const formattedDates = `${day}-${month}-${year}`
+
+      console.log(formattedDates) // Output: 26-jan-24
 
       const constructedPostDetails = {
         title: postContent.title,
@@ -29,16 +46,20 @@ export const SubmitBtn = ({ postContent, formattedDate }) => {
         content: postContent.content,
         banner: postContent.banner,
         tags: postContent.tags,
-        date: formattedDate === null ? currentDate : formattedDate,
+        date: formattedDates,
+        postCustomId: posts?.posts?.length + 1,
       }
 
-      setPostDetails(constructedPostDetails)
+      submitPost(constructedPostDetails) // Submit the post once constructed
     }
   }, [imageUrl, postContent, formattedDate])
 
   const uploadImage = async (uploadImg) => {
     try {
-      const imageRef = ref(storages, `/images/${uploadImg.name}`)
+      const imageRef = ref(
+        storages,
+        `/images/${uploadImg.name}${posts?.posts?.length + 1}`
+      )
       await uploadBytes(imageRef, uploadImg)
       const imageUrl = await getDownloadURL(imageRef)
       console.log('Image uploaded successfully. URL:', imageUrl)
@@ -49,36 +70,8 @@ export const SubmitBtn = ({ postContent, formattedDate }) => {
     }
   }
 
-  const submitFunc = async () => {
+  const submitPost = async (postDetails) => {
     try {
-      // Check if an image is selected
-      if (!postContent.uploadImg) {
-        console.error('No image selected.')
-        return
-      }
-
-      // Upload image and wait for the URL
-      const uploadedImageUrl = await uploadImage(postContent.uploadImg)
-      setImageUrl(uploadedImageUrl)
-      toast.success('Image uploaded successfully', { autoClose: 1500 })
-
-      // Construct post details
-      const currentDate = new Date().toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-      })
-
-      const postDetails = {
-        title: postContent.title,
-        image: uploadedImageUrl, // Use the uploaded image URL
-        category: postContent.sCategory,
-        content: postContent.content,
-        banner: postContent.banner,
-        tags: postContent.tags,
-        date: formattedDate === null ? currentDate : formattedDate,
-      }
-
       // Submit postDetails to the API
       const { data } = await axios.post(
         `${process.env.NEXT_PUBLIC_HOST}/api/posts/create`,
@@ -87,7 +80,7 @@ export const SubmitBtn = ({ postContent, formattedDate }) => {
 
       if (data.success) {
         toast.success(data.msg, { autoClose: 1500 })
-        // Optionally reload the page or perform any other actions upon successful submission
+        router.reload()
       } else {
         toast.error(data.msg)
       }
@@ -97,8 +90,46 @@ export const SubmitBtn = ({ postContent, formattedDate }) => {
     }
   }
 
+  const submitFunc = async () => {
+    try {
+      // Check if an image is selected
+     
+      if (!postContent.title) {
+        toast.error('Please enter your title. ')
+        return
+      }
+      if (!postContent.content) {
+        toast.error('Please enter your Content.')
+        return
+      }
+      if (!postContent.sCategory) {
+        toast.error('Please select your Category.')
+        return
+      }
+      if (!postContent.uploadImg) {
+        toast.error('image is required')
+        return
+      }
+      toast.loading('posting...')
+
+      // Upload image and wait for the URL
+      const uploadedImageUrl = await uploadImage(postContent.uploadImg)
+      setImageUrl(uploadedImageUrl)
+      toast.dismiss()
+      toast.success('Image uploaded successfully', { autoClose: 1500 })
+    } catch (error) {
+      console.error('Error uploading the image:', error)
+      toast.error('Error uploading the image. Please try again.')
+    }
+  }
+
   console.log('imageUrl:', imageUrl)
-  console.log('postDetails:', postDetails) // Check if postDetails is correctly constructed
+  const currentDate = new Date()
+  const year = currentDate.getFullYear().toString().slice(2) // Extract last two digits of the year
+  const month = currentDate.toLocaleString('default', { month: 'short' }) // Get abbreviated month name
+  const day = currentDate.getDate() // Get the day of the month
+
+  const formattedDates = `${day}-${month}-${year}`
 
   return <button onClick={submitFunc}>Add Post</button>
 }

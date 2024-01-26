@@ -1,10 +1,9 @@
-import axios from 'axios'
+import React from 'react'
 import Link from 'next/link'
-import React, { useState, useEffect } from 'react'
 
-export default function Section2({loading, posts}) {
-  const pakPosts = posts.filter(item=> item.category === 'pakistan')
-  
+export default function Section2({ loading, posts }) {
+  const pakPosts = posts.filter((item) => item.category === 'pakistan')
+
   return (
     <div className='section2MainContainer sectionContainer'>
       <div className='sectionContainerTitle'>
@@ -29,7 +28,11 @@ export default function Section2({loading, posts}) {
               <div className='body'>
                 <h3>{pakPosts[0]?.category}</h3>
                 <Link
-                  href={`/${pakPosts[0]?.category}/${pakPosts[0]?.date}/${pakPosts[0]?._id}`}
+                  href={`/${pakPosts[0]?.category}/posts/${
+                    pakPosts[0]?.postCustomId
+                      ? `${pakPosts[0]?.postCustomId}`
+                      : `${pakPosts[0]?._id}`
+                  }`}
                 >
                   <h1>{pakPosts[0]?.title}</h1>
                 </Link>
@@ -53,20 +56,24 @@ export default function Section2({loading, posts}) {
             pakPosts &&
             pakPosts.slice(0, 4).map((post) => {
               return (
-                  <div className='post-style' key={post._id}>
-                    <div className='img'>
-                      {post.image && <img src={post?.image} alt='' />}
-                    </div>
-                    <div className='body'>
-                      <h3 className='categoryName'>{post.category}</h3>
-                      <Link 
-                        href={`/${pakPosts[0]?.category}/${pakPosts[0]?.date}/${pakPosts[0]?._id}`}
-                      >
-                        <h1>{post.title}</h1>
-                      </Link>
-                      <p>{post.date}</p>
-                    </div>
+                <div className='post-style' key={post._id}>
+                  <div className='img'>
+                    {post.image && <img src={post?.image} alt='' />}
                   </div>
+                  <div className='body'>
+                    <h3 className='categoryName'>{post.category}</h3>
+                    <Link
+                      href={`/${post?.category}/posts/${
+                        post?.postCustomId
+                          ? `${post?.postCustomId}`
+                          : `${post?._id}`
+                      }`}
+                    >
+                      <h1>{post.title}</h1>
+                    </Link>
+                    <p>{post.date}</p>
+                  </div>
+                </div>
               )
             })
           )}
