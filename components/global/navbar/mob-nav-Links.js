@@ -66,7 +66,7 @@ export default function MobNavLinks() {
           </li>
           <li onClick={activeDropFunc}>
             <div className='dropLink'>
-              <Link href={'/'}>Business</Link>
+              <Link href={'/business'}>Business</Link>
               <div className="linkIcon">
                 <i className={`fas fa-arrow-${activeDrop ? 'up' : 'down'}`}></i>
               </div>

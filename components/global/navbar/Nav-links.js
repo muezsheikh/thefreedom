@@ -14,7 +14,7 @@ export default function NavLinks() {
             <li><Link href={'/middle-east'}>Middle East</Link></li>
           </ul>
         </li>
-        <li><Link href={'/'}>Business</Link>
+        <li><Link href={'/business'}>Business</Link>
         <ul className="dropdown">
           <li><Link href='crypto'>Crypto</Link></li>
         </ul>
