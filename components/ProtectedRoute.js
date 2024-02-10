@@ -14,7 +14,6 @@ const ProtectedRoute = ({ children }) => {
     if (!session || session.user.name !== allowedUsername) {
       // Temporarily remove the redirect for debugging
       // router.replace('/login'); // Change '/login' to your actual login page
-      console.log('Not authenticated or wrong username');
     }
   }, [session, router]);
 

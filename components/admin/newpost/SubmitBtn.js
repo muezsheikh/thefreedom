@@ -37,7 +37,6 @@ export const SubmitBtn = ({ postContent, formattedDate }) => {
 
       const formattedDates = `${day}-${month}-${year}`
 
-      console.log(formattedDates) // Output: 26-jan-24
 
       const constructedPostDetails = {
         title: postContent.title,
@@ -62,7 +61,6 @@ export const SubmitBtn = ({ postContent, formattedDate }) => {
       )
       await uploadBytes(imageRef, uploadImg)
       const imageUrl = await getDownloadURL(imageRef)
-      console.log('Image uploaded successfully. URL:', imageUrl)
       return imageUrl
     } catch (error) {
       console.error('Error uploading the image:', error)
@@ -123,7 +121,6 @@ export const SubmitBtn = ({ postContent, formattedDate }) => {
     }
   }
 
-  console.log('imageUrl:', imageUrl)
   const currentDate = new Date()
   const year = currentDate.getFullYear().toString().slice(2) // Extract last two digits of the year
   const month = currentDate.toLocaleString('default', { month: 'short' }) // Get abbreviated month name

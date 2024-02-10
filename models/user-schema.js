@@ -1,8 +1,10 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose'
 
 const userSchema = new mongoose.Schema({
   username: String,
-  password: String
+  email: String,
+  password: String,
 })
 
-export default mongoose.models.adminuser || mongoose.model('adminuser', userSchema)
+export default mongoose.models.adminuser ||
+  mongoose.model('adminuser', userSchema)

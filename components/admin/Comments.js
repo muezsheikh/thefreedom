@@ -4,12 +4,10 @@ import { comments } from './data';
 export default function Comments() {
   const handleEdit = (type, id) => {
     // Replace with your edit logic
-    console.log(`Editing ${type} with ID ${id}`);
   };
 
   const handleDelete = (type, id) => {
     // Replace with your delete logic
-    console.log(`Deleting ${type} with ID ${id}`);
   };
 
   return (

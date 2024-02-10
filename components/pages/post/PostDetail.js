@@ -43,54 +43,61 @@ export default function PostDetail() {
     getUpdatePostData()
   }, [router.query])
   return (
-    <PageLayout>
-      <div className='postDetailPage'>
-        {loading ? (
-          <div className='heroSkeletonContainer'>
-            <div className='skeleton-element'></div>
-          </div>
-        ) : (
-          post && (
-            <>
-              <div className='image'>
-                <img src={post?.image} alt='' />
-              </div>
-            </>
-          )
-        )}
-        {post && (
-          <div className='title'>
-            <h1>{post?.title}</h1>
-          </div>
-        )}
-        {loading ? (
-          <div className='heroSkeletonContainer'>
-            <div className='skeleton-element'></div>
-          </div>
-        ) : (
-          post && (
-            <>
-              <div
-                id='quill-container'
-                dangerouslySetInnerHTML={{ __html: post.content }}
-              />
-            </>
-          )
-        )}
-      </div>
-      {post && <Tags post={post} />}
-      <RecentPosts post={post} />
-      {loading ? (
-        <div className='heroSkeletonContainer'>
-          <div className='skeleton-element'></div>
+    <>
+      <Head>
+        <title className='capitalize'>{post?.name}</title>
+        <meta property='og:description' content={post?.description} />
+        <meta property='og:image' content={post?.image} />
+      </Head>
+      <PageLayout>
+        <div className='postDetailPage'>
+          {loading ? (
+            <div className='heroSkeletonContainer'>
+              <div className='skeleton-element'></div>
+            </div>
+          ) : (
+            post && (
+              <>
+                <div className='image'>
+                  <img src={post?.image} alt='' />
+                </div>
+              </>
+            )
+          )}
+          {post && (
+            <div className='title'>
+              <h1>{post?.title}</h1>
+            </div>
+          )}
+          {loading ? (
+            <div className='heroSkeletonContainer'>
+              <div className='skeleton-element'></div>
+            </div>
+          ) : (
+            post && (
+              <>
+                <div
+                  id='quill-container'
+                  dangerouslySetInnerHTML={{ __html: post.content }}
+                />
+              </>
+            )
+          )}
         </div>
-      ) : (
-        post && (
-          <>
-            <CommentSection postId={post._id} />
-          </>
-        )
-      )}
-    </PageLayout>
+        {post && <Tags post={post} />}
+        <RecentPosts post={post} />
+        {loading ? (
+          <div className='heroSkeletonContainer'>
+            <div className='skeleton-element'></div>
+          </div>
+        ) : (
+          post && (
+            <>
+              <CommentSection postId={post._id} />
+            </>
+          )
+        )}
+      </PageLayout>
+    </>
   )
 }

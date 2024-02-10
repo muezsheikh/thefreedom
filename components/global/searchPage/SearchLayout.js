@@ -18,7 +18,6 @@ export default function SearchLayout({ activeSearch, activeSearchFunc }) {
       )
       setPosts(response.data.results)
     } catch (error) {
-      console.log(error)
     } finally {
       setPostLoading(false)
     }

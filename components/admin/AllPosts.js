@@ -132,13 +132,11 @@ export default function AllPosts() {
     }
   }
   const deleteFunc = () => {
-    console.log('first')
     if (delPostDetail.postId || delPostDetail.postImg) {
       deletePost(delPostDetail.postId, delPostDetail.postImg)
       activeConfirmModalFunc()
     }
   }
-console.log(posts)
   return (
     <div className='allPostsContainer'>
       <div className='container'>

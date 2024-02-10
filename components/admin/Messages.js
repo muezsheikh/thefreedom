@@ -24,7 +24,6 @@ export default function Messages() {
 
     getMessages();
   }, []);
-  console.log(messages)
   const deleteMessage = async (id) => {
     try {
       const loadingToast = toast.info('deleting...', { autoClose: false });

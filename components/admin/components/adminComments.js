@@ -34,7 +34,6 @@ export default function AdminComments({ postId, viewComments }) {
 
 
   const commentsRepliesLength = postComments.length + replies.length
-  console.log(postComments, replies)
 
   const deleteComment = async (id) => {
     try {

@@ -22,7 +22,6 @@ const fetchData = async () => {
 export default function HomeLayout() {
   const [loading, setLoading] = useState(false)
   const [posts, setPosts] = useState([])
-  console.log('arrra', posts)
   useEffect(() => {
     const fetchPosts = async () => {
       setLoading(true)
