@@ -45,8 +45,7 @@ export default function PostDetail() {
   return (
     <>
       <Head>
-        <title className='capitalize'>{post?.name}</title>
-        <meta property='og:description' content={post?.description} />
+        <title className='capitalize'>{post?.title}</title>
         <meta property='og:image' content={post?.image} />
       </Head>
       <PageLayout>
