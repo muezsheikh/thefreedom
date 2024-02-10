@@ -44,11 +44,6 @@ export default function PostDetail() {
   }, [router.query])
   return (
     <>
-      <Head>
-        <title className='capitalize'>{post?.title}</title>
-        <meta property='og:title' content={post?.title} />
-        <meta property='og:image' content={post?.image} />
-      </Head>
       <PageLayout>
         <div className='postDetailPage'>
           {loading ? (
