@@ -7,7 +7,7 @@ import Tags from './Tags'
 import { toast } from 'react-toastify'
 import { useRouter } from 'next/router'
 import axios from 'axios'
-import { Head } from 'next/document'
+import Head from 'next/head'
 
 export default function PostDetail() {
   const router = useRouter()
@@ -46,6 +46,7 @@ export default function PostDetail() {
     <>
       <Head>
         <title className='capitalize'>{post?.title}</title>
+        <meta property='og:title' content={post?.title} />
         <meta property='og:image' content={post?.image} />
       </Head>
       <PageLayout>

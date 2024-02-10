@@ -30,7 +30,6 @@ export default function PostsPage() {
     getPosts();
 
   }, [router.query]);
-  console.log(posts)
   return (
     <>
       <PostsLayout posts={posts} loading={loading} postCategory={postCategory} />
