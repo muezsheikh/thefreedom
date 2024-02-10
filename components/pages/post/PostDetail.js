@@ -45,17 +45,17 @@ export default function PostDetail() {
     <>
       <Head>
         <title>{post?.title}</title>
-        {/* <meta property="og:description" content=""/> */}
-        <meta name="twitter:card" content="summary_large_image"/>
-        <meta property='twitter:domain' content='thefreedom.com.pk' />
+        <meta name='description' content={post?.title} />
+
+        <meta property='og:type' content='website' />
         <meta property='og:title' content={post?.title} />
+        <meta property='og:description' content={post?.title} />
         <meta property='og:image' content={post?.image} />
-        <meta property='twitter:title' content={post?.title} />
-        <meta property='twitter:image' content={post?.image} />
-        {/* <meta name="facebook:title" content={post?.title}/>
-<meta name="facebook:image" content={post?.image}/>
-<meta name="whatsapp:title" content={post?.title}/>
-<meta name="whatsapp:image" content={post?.image}/> */}
+
+        <meta name='twitter:card' content='summary_large_image' />
+        <meta property='twitter:domain' content='thefreedom.com.pk' />
+        <meta name='twitter:title' content={post?.title} />
+        <meta name='twitter:image' content={post?.image} />
       </Head>
       <PageLayout>
         <div className='postDetailPage'>
