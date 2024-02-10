@@ -8,7 +8,7 @@ import { toast } from 'react-toastify'
 import { useRouter } from 'next/router'
 import axios from 'axios'
 import Head from 'next/head'
-
+import { FacebookShareButton } from 'react-share'
 export default function PostDetail() {
   const router = useRouter()
 
@@ -41,22 +41,24 @@ export default function PostDetail() {
   useEffect(() => {
     getUpdatePostData()
   }, [router.query])
+  const currentUrl = typeof window !== 'undefined' ? window.location.href : router.asPath;
   return (
     <>
       <Head>
         <title>{post?.title}</title>
         <meta name='description' content={post?.title} />
 
-      
         <meta property='og:type' content='website' />
+        <meta property='og:url' content={currentUrl} />
         <meta property='og:title' content={post?.title} />
         <meta property='og:description' content={post?.title} />
         <meta property='og:image' content={post?.image} />
 
         <meta name='twitter:card' content='summary_large_image' />
         <meta property='twitter:domain' content='thefreedom.com.pk' />
-      
+
         <meta name='twitter:title' content={post?.title} />
+        <meta name='twitter:url' content={currentUrl} />
         <meta name='twitter:description' content={post?.title} />
         <meta name='twitter:image' content={post?.image}></meta>
       </Head>
@@ -96,6 +98,14 @@ export default function PostDetail() {
           )}
         </div>
         {post && <Tags post={post} />}
+        <FacebookShareButton url={currentUrl}>
+          <button className='btn-share'>
+
+          Share on Facebook
+          </button>
+
+        </FacebookShareButton>
+
         <RecentPosts post={post} />
         {loading ? (
           <div className='heroSkeletonContainer'>
