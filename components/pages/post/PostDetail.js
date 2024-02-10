@@ -53,12 +53,13 @@ export default function PostDetail() {
 <meta name="twitter:card" content="summary_large_image"/>
 <meta property="twitter:domain" content="thefreedom.com.pk"/>
 {/* <meta property="twitter:url" content="https://www.thefreedom.com.pk/pakistan/posts/35" /> */}
-<meta name="twitter:title" content={post?.title}/>
-<meta name="twitter:image" content={post?.image}/>
-<meta name="facebook:title" content={post?.title}/>
+<meta name="twitter:title" content="checking..........."/>
+<meta name="twitter:image" content="https://www.denofgeek.com/wp-content/uploads/2022/05/Leged-of-Zelda-Link.jpg?resize=768%2C432"/>
+<meta name="og:image" content="https://www.denofgeek.com/wp-content/uploads/2022/05/Leged-of-Zelda-Link.jpg?resize=768%2C432"/>
+{/* <meta name="facebook:title" content={post?.title}/>
 <meta name="facebook:image" content={post?.image}/>
 <meta name="whatsapp:title" content={post?.title}/>
-<meta name="whatsapp:image" content={post?.image}/>
+<meta name="whatsapp:image" content={post?.image}/> */}
       </Head>
       <PageLayout>
         <div className='postDetailPage'>
