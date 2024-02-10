@@ -13,6 +13,9 @@ export default class MyDocument extends Document {
             crossOrigin='anonymous'
             referrerPolicy='no-referrer'
           />
+          <link rel="shortcut icon" href="/images/freedomLogo.png" type="image/x-icon" />
+        <meta property='og:image' content='/images/logo.png' />
+
           <title>The Freedom | News, Entertainment, Sports, and More</title>
         </Head>
         <body>

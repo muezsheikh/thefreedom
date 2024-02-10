@@ -28,7 +28,6 @@ export default function PostDetail() {
       if (data) {
         setPost(data.post)
         setLoading(false)
-        document.title = data.post.title
       } else {
         router.replace('/404')
       }
@@ -44,6 +43,11 @@ export default function PostDetail() {
   }, [router.query])
   return (
     <>
+      <Head>
+        <title className='capitalize'>{post?.title}</title>
+        <meta property='og:title' content={post?.title} />
+        <meta property='og:image' content={post?.image} />
+      </Head>
       <PageLayout>
         <div className='postDetailPage'>
           {loading ? (
