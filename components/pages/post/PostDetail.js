@@ -45,17 +45,13 @@ export default function PostDetail() {
     <>
       <Head>
         <title>{post?.title}</title>
-        {/* <meta property="og:url" content="https://www.thefreedom.com.pk/pakistan/posts/35"/> */}
-        {/* <meta property="og:type" content="website"/> */}
-        <meta property='og:title' content={post?.title} />
         {/* <meta property="og:description" content=""/> */}
-        <meta property='og:image' content={post?.image} />
-        {/* <meta name="twitter:card" content="summary_large_image"/> */}
+        <meta name="twitter:card" content="summary_large_image"/>
         <meta property='twitter:domain' content='thefreedom.com.pk' />
-        {/* <meta property="twitter:url" content="https://www.thefreedom.com.pk/pakistan/posts/35" /> */}
-        <meta name='twitter:title' content={post?.title} />
-        <meta name='og:image' content={post?.image} />
-        <meta name='twitter:image' content={post?.image} />
+        <meta property='og:title' content={post?.title} />
+        <meta property='og:image' content={post?.image} />
+        <meta property='twitter:title' content={post?.title} />
+        <meta property='twitter:image' content={post?.image} />
         {/* <meta name="facebook:title" content={post?.title}/>
 <meta name="facebook:image" content={post?.image}/>
 <meta name="whatsapp:title" content={post?.title}/>
