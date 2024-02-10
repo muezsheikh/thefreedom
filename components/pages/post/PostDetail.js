@@ -44,51 +44,27 @@ export default function PostDetail() {
   return (
     <>
       <Head>
-        <title>
-          Trump attacks Haley for absence of her husband, who is deployed | CNN
-          Politics
-        </title>
-        <meta
-          name='description'
-          content='Former President Donald Trump, riding high after one of the best days of his campaign, used a rally in South Carolina on Saturday to attack rival Nikki Haley in her home state — and to mock the absence of her husband, who is deployed overseas.'
-        />
+        <title>{post?.title}</title>
+        <meta name='description' content={post?.title} />
 
         <meta
           property='og:url'
-          content='https://edition.cnn.com/2024/02/10/politics/trump-south-carolina-primary-haley/index.html'
+          content={`${process.env.NEXT_PUBLIC_HOST}/api/posts/postCustomId/${router?.query?.postId[1]}`}
         />
         <meta property='og:type' content='website' />
-        <meta
-          property='og:title'
-          content='Trump attacks Haley for absence of her husband, who is deployed | CNN Politics'
-        />
-        <meta
-          property='og:description'
-          content='Former President Donald Trump, riding high after one of the best days of his campaign, used a rally in South Carolina on Saturday to attack rival Nikki Haley in her home state — and to mock the absence of her husband, who is deployed overseas.'
-        />
-        <meta
-          property='og:image'
-          content='https://media.cnn.com/api/v1/images/stellar/prod/gettyimages-1996862067.jpg?c=16x9&q=w_800,c_fill'
-        />
+        <meta property='og:title' content={post?.title} />
+        <meta property='og:description' content={post?.title} />
+        <meta property='og:image' content={post?.image} />
 
         <meta name='twitter:card' content='summary_large_image' />
-        <meta property='twitter:domain' content='edition.cnn.com' />
+        <meta property='twitter:domain' content='thefreedom.com.pk' />
         <meta
           property='twitter:url'
-          content='https://edition.cnn.com/2024/02/10/politics/trump-south-carolina-primary-haley/index.html'
+          content={`${process.env.NEXT_PUBLIC_HOST}/api/posts/postCustomId/${router?.query?.postId[1]}`}
         />
-        <meta
-          name='twitter:title'
-          content='Trump attacks Haley for absence of her husband, who is deployed | CNN Politics'
-        />
-        <meta
-          name='twitter:description'
-          content='Former President Donald Trump, riding high after one of the best days of his campaign, used a rally in South Carolina on Saturday to attack rival Nikki Haley in her home state — and to mock the absence of her husband, who is deployed overseas.'
-        />
-        <meta
-          name='twitter:image'
-          content='https://media.cnn.com/api/v1/images/stellar/prod/gettyimages-1996862067.jpg?c=16x9&q=w_800,c_fill'
-        ></meta>
+        <meta name='twitter:title' content={post?.title} />
+        <meta name='twitter:description' content={post?.title} />
+        <meta name='twitter:image' content={post?.image}></meta>
       </Head>
       <PageLayout>
         <div className='postDetailPage'>
