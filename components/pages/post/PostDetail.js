@@ -47,10 +47,7 @@ export default function PostDetail() {
         <title>{post?.title}</title>
         <meta name='description' content={post?.title} />
 
-        <meta
-          property='og:url'
-          content={`${process.env.NEXT_PUBLIC_HOST}/api/posts/postCustomId/${router?.query?.postId[1]}`}
-        />
+      
         <meta property='og:type' content='website' />
         <meta property='og:title' content={post?.title} />
         <meta property='og:description' content={post?.title} />
@@ -58,10 +55,7 @@ export default function PostDetail() {
 
         <meta name='twitter:card' content='summary_large_image' />
         <meta property='twitter:domain' content='thefreedom.com.pk' />
-        <meta
-          property='twitter:url'
-          content={`${process.env.NEXT_PUBLIC_HOST}/api/posts/postCustomId/${router?.query?.postId[1]}`}
-        />
+      
         <meta name='twitter:title' content={post?.title} />
         <meta name='twitter:description' content={post?.title} />
         <meta name='twitter:image' content={post?.image}></meta>
