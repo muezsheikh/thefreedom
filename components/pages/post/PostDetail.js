@@ -8,7 +8,6 @@ import { toast } from 'react-toastify'
 import { useRouter } from 'next/router'
 import axios from 'axios'
 import Head from 'next/head'
-import { Post } from '@/models/post-schema'
 
 export default function PostDetail() {
   const router = useRouter()
