@@ -158,7 +158,7 @@ export default function EditPost() {
 
   useEffect(() => {
     getUpdatePostData()
-  }, [router.query.editpost[1]])
+  }, [router?.query?.editpost[1]])
 
   const updateData = async () => {
     try {

@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { toast } from 'react-toastify'
 
-export const SubmitBtn = ({ postContent, formattedDate }) => {
+export const SubmitBtn = ({ postContent, formattedDate,username }) => {
   const router = useRouter()
   const [imageUrl, setImageUrl] = useState('')
   const [posts, setPosts] = useState([])
@@ -47,6 +47,7 @@ export const SubmitBtn = ({ postContent, formattedDate }) => {
         tags: postContent.tags,
         date: formattedDates,
         postCustomId: posts?.posts?.length + 1,
+        postby: username
       }
 
       submitPost(constructedPostDetails) // Submit the post once constructed

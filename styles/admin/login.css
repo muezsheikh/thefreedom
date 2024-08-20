@@ -1,79 +1,36 @@
-.loginPage {
-  min-height: 100vh;
+.login-body {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
-  gap: 3rem;
+  height: 100vh;
 }
-
-.loginImg {
-  width: 70%; /* Adjust the width relative to the container */
-  max-width: 350px; /* Set a maximum width to maintain responsiveness */
-  position: absolute;
-  top: 10%;
+.login-body .login-form h1{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-
-.loginContainer {
-  margin-top: 1rem;
-  position: relative; /* Change to relative positioning for responsiveness */
-  width: 90%; /* Adjust width relative to the container */
-  max-width: 800px; /* Set a maximum width to maintain responsiveness */
-  border-radius: 15px;
-  background: #24292e; /* GitHub background color */
+.login-body .login-form {
+  width: 20%;
   display: flex;
   flex-direction: column;
+  gap: 1rem;
+}
+
+.login-body .login-form .inputs{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.login-body .login-form .login-btn{
+  display: flex;
+  justify-content: center;
   align-items: center;
-  padding: 4rem;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-  color: #fff;
 }
-
-.loginContainer .title {
-  margin-bottom: 2rem;
-  color: #f9826c;
-}
-
-.loginContainer button {
-  background-color: #f9826c;
-  color: #fff;
+.login-body .login-form .login-btn button{
+  padding: 10px 25px;
+  border-radius: 20px;
   border: none;
-  padding: 1rem 2rem;
-  border-radius: 5px;
-  font-size: 1.2rem;
+  background-color: rgb(51, 103, 198);
+  color: white;
   cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.loginContainer button:hover {
-  background-color: #d7514f;
-}
-.sSButton button{
-  background-color: #37a2ea;
-}
-.sSButton button:hover{
-  background-color: #0a69a8;
-}
-
-/* Media query for smaller screens */
-@media (max-width: 600px) {
-  .loginContainer {
-    width: 90%;
-    padding: 3rem;
-  }
-
-  .loginImg {
-    width: 70%;
-    max-width: none;
-    top: 5%;
-  }
-  
-  .loginContainer .title {
-    font-size: .8rem;
-  }
-  
-  .loginContainer button {
-    font-size: 1rem;
-  }
-  
 }

@@ -10,6 +10,7 @@ const postSchema = new mongoose.Schema({
   date: String,
   createdAt: { type: Date, default: Date.now },
   postCustomId: Number,
+  postby: String
 })
 
 export default mongoose.models.posts || mongoose.model('posts', postSchema)

@@ -187,6 +187,11 @@ export default function AllPosts() {
                         <div className='postDate'>
                           <p>{post.date}</p>
                         </div>
+                        {post?.posby && (
+                          <div className='postDate'>
+                            <p>By: {post?.postby}</p>
+                          </div>
+                        )}
                         <button
                           className='commentsButton'
                           onClick={() => viewComments(post._id)}
@@ -230,7 +235,9 @@ export default function AllPosts() {
               </p>
             </div>
             <div className='confirmButtons'>
-              <button className='delBtn' onClick={deleteFunc}>Delete</button>
+              <button className='delBtn' onClick={deleteFunc}>
+                Delete
+              </button>
               <button className='cnBtn' onClick={activeConfirmModalFunc}>
                 Cancel
               </button>

@@ -1,19 +1,16 @@
-import ProtectedRoute from '@/components/ProtectedRoute'
 import AdminLayout from '@/components/admin/AdminLayout'
 import EditPost from '@/components/admin/EditPost'
-import { useSession } from 'next-auth/react'
-import { useRouter } from 'next/router'
+import withAuth from '@/hoc/withAuth'
 
-export default function EditPostPage() {
+ function EditPostPage() {
   
-  const { data: session } = useSession()
-  const router = useRouter()
   
   return (
-    <ProtectedRoute>
+    <div>
       <AdminLayout>
         <EditPost />
       </AdminLayout>
-    </ProtectedRoute>
+    </div>
   )
 }
+export default withAuth(EditPostPage)

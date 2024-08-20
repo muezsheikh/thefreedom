@@ -1,63 +1,75 @@
-import { useSession, signIn, signOut } from "next-auth/react"
-import Link from "next/link"
-import { useRouter } from "next/router"
-import { useEffect } from "react"
+import axios from 'axios'
+import { useRouter } from 'next/router'
+import React, { useState } from 'react'
+import { toast } from 'react-toastify'
 
-export default function Component() {
-  const { data: session } = useSession()
+export default function LoginPage() {
   const router = useRouter()
-    useEffect(() => {
-      if (session && session?.user?.name !== process.env.NEXT_PUBLIC_ADMIN_URL) {
-        // Set a timeout to call signOut after 10 seconds
-        const timeoutId = setTimeout(() => {
-          signOut();
-        }, 10000);
-  
-        // Clear the timeout if the component is unmounted or session changes
-        return () => clearTimeout(timeoutId);
-      }
-  
-      // If the condition is not met, do nothing in the effect
-    }, [session?.user?.name, signOut]);
-  return (
-    <div className="loginPage">
-      <div className="loginImg">
-        <img src="/images/logo.png" alt="" />
-      </div>
-      {!session &&
+  const [formData, setFormData] = useState({
+    username: '',
+    password: '',
+  })
 
-        <div className="loginContainer">
-          <div className="title">
-            <h1>Sign in with Github</h1>
+  const { username, password } = formData
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value })
+  }
+
+  const handleSubmit = async (e) => {
+
+    try {
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_HOST}/api/auth/loginuser`,
+        formData,
+        { withCredentials: true }
+      )
+
+      const data = response.data // Access the response data directly
+
+      if (data) {
+        toast.success('Login Successful')
+        router.push('/admin')
+        console.log('Login successful')
+
+        // The session data is now stored in cookies, so no need to manually store the token
+        // Redirect or perform other actions here
+      } else {
+        console.error('Login failed:', data.msg)
+        // Handle errors here, e.g., show an error message
+      }
+    } catch (err) {
+      console.error('Error submitting form', err)
+    }
+  }
+  return (
+    <div className='login-body'>
+      <div className='login-form'>
+        <h1 className='heading'>The Freedom</h1>
+        <div className='inputs'>
+          <div className='input'>
+            <input
+              name='username'
+              value={username}
+              onChange={handleChange}
+              type='text'
+              placeholder='Enter Username'
+            />
           </div>
-          <div className="sButton">
-            <button onClick={() => signIn()}>Sign In</button>
+          <div className='input'>
+            <input
+              name='password'
+              value={password}
+              onChange={handleChange}
+              type='password'
+              placeholder='Enter Passowrd'
+            />
           </div>
         </div>
-      }
-      {session && session?.user?.name !== process.env.NEXT_PUBLIC_ADMIN_URL &&
-        <div className="loginContainer">
-          <div className="title">
-            <h1>Sorry! only Admins can sign in.🙂</h1>
-          </div>
-          <div className="sButton">
-            <button onClick={() => signOut()}>Singed out in 10 seconds</button>
-          </div>
+        <div className='login-btn'>
+          <button onClick={handleSubmit}>Login</button>
         </div>
-      }
-      {session?.user?.name === process.env.NEXT_PUBLIC_ADMIN_URL &&
-        <div className="loginContainer">
-          <div className="title">
-            <h1>Glad to see you BOSS!🤗</h1>
-          </div>
-          <div className="sSButton">
-            <button onClick={() => router.push('/admin/newpost')}>Go to the Dashboard</button>
-          </div>
-          <div className="sButton" style={{ marginTop: '1rem' }}>
-            <button onClick={() => signOut()}>Sign Out</button>
-          </div>
-        </div>
-      }
+      </div>
     </div>
   )
 }

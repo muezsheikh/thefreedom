@@ -4,8 +4,26 @@ import ReactQuillSection from './newpost/ReactQuillSection'
 import { SubmitBtn } from './newpost/SubmitBtn'
 import Categories from './newpost/Categories'
 import ImageUp from './newpost/ImageUp'
+import { useEffect } from 'react'
+import axios from 'axios'
 
 export default function NewPost() {
+  const [userInfo, setUserInfo] = useState()
+  const fetchUserInfo = async () => {
+    try {
+      const { data } = await axios.get(
+        `${process.env.NEXT_PUBLIC_HOST}/api/auth/getuser`,
+        { withCredentials: true }
+      )
+      setUserInfo(data)
+    } catch (error) {
+      console.error('Error fetching user info:', error)
+    } 
+  }
+  useEffect(() => {
+    fetchUserInfo()
+  }, [])
+
   const [formattedDate, setFormattedDate] = useState(null)
 
   const handleDateChange = (e) => {
@@ -34,10 +52,14 @@ export default function NewPost() {
 
   const postContentHandler = (name, value) => {
     if (name === 'uploadImg' && value) {
-      const imageUrl = URL.createObjectURL(value);
-      setPostContent({ ...postContent, [name]: value, uploadedImageUrl: imageUrl });
+      const imageUrl = URL.createObjectURL(value)
+      setPostContent({
+        ...postContent,
+        [name]: value,
+        uploadedImageUrl: imageUrl,
+      })
     } else {
-      setPostContent({ ...postContent, [name]: value });
+      setPostContent({ ...postContent, [name]: value })
     }
   }
   const handleInputKeydown = (e) => {
@@ -52,7 +74,6 @@ export default function NewPost() {
     newTags.splice(index, 1)
     setPostContent({ ...postContent, tags: newTags })
   }
-
 
   
   return (
@@ -123,11 +144,21 @@ export default function NewPost() {
               <label>Custom Date:</label>
               <input type='date' onChange={handleDateChange} />
             </div>
+            <div className='inputGroup'>
+              <label>Post by:</label>
+              <input
+                name='userinfo'
+                value={userInfo?.username}
+                type='text'
+                disabled
+              />
+            </div>
             <div className='submitButton'>
               <SubmitBtn
                 postContent={postContent}
                 imageUrl={postContent.uploadedImageUrl}
                 formattedDate={formattedDate}
+                username={userInfo?.username}
               />
             </div>
           </div>

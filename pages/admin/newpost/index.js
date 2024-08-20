@@ -1,18 +1,14 @@
-import ProtectedRoute from '@/components/ProtectedRoute'
 import AdminLayout from '@/components/admin/AdminLayout'
 import NewPost from '@/components/admin/NewPost'
-import { useSession } from 'next-auth/react'
-import { useRouter } from 'next/router'
-import React, { useEffect } from 'react'
+import withAuth from '@/hoc/withAuth'
 
-export default function NewPostPage() {
-  
+function NewPostPage() {
   return (
-    <ProtectedRoute>
-
-    <AdminLayout>
-      <NewPost />
-    </AdminLayout>
-    </ProtectedRoute>
+    <div>
+      <AdminLayout>
+        <NewPost />
+      </AdminLayout>
+    </div>
   )
 }
+export default withAuth(NewPostPage)

@@ -1,11 +1,9 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document'
-import { Analytics } from '@vercel/analytics/react'
-import { SpeedInsights } from '@vercel/speed-insights/next'
 export default class MyDocument extends Document {
   render() {
     return (
       <Html lang='en'>
-        <Head>
+        {/* <Head>
           <link
             rel='stylesheet'
             href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css'
@@ -17,12 +15,11 @@ export default class MyDocument extends Document {
         <meta property='og:image' content='/images/logo.png' />
 
           <title>The Freedom | News, Entertainment, Sports, and More</title>
-        </Head>
+        </Head> */}
+         <Head />
         <body>
           <Main />
           <NextScript />
-          <Analytics />
-          <SpeedInsights />
         </body>
       </Html>
     )

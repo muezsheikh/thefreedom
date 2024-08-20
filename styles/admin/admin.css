@@ -8,6 +8,7 @@
 .adminNav ul {
   display: flex;
   gap: 10px;
+  align-items: center;
 }
 .adminNav ul li {
   padding: 10px;
@@ -435,4 +436,20 @@
 }
 .uploadedImg button:hover {
   background-color: rgb(130, 9, 9);
+}
+
+.logout-btn{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  /* background-color: red; */
+  padding: 10px;
+}
+.logout-btn button{
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: none;
+  background-color: #002244;
+  color: white;
+  cursor: pointer;
 }
