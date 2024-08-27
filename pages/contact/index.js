@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import { toast } from 'react-toastify'
@@ -73,6 +74,10 @@ export default function ContactPage() {
   }
 
   return (
+    <>
+    <Head>
+    <title>Contact - TheFreedom News - Stay Informed and Reflect</title>
+    </Head>
     <div className='contactPage'>
       <div className='container'>
         <div className='AwesomeCommentSection'>
@@ -114,5 +119,7 @@ export default function ContactPage() {
         </div>
       </div>
     </div>
+    </>
+
   )
 }

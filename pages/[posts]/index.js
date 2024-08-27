@@ -1,7 +1,8 @@
-import PostsLayout from "@/components/pages/posts/PostsLayout";
-import axios from "axios";
-import { useRouter } from "next/router";
-import { useState,useEffect } from "react";
+import PostsLayout from '@/components/pages/posts/PostsLayout'
+import axios from 'axios'
+import Head from 'next/head'
+import { useRouter } from 'next/router'
+import { useState, useEffect } from 'react'
 
 export default function PostsPage() {
   const router = useRouter()
@@ -12,7 +13,9 @@ export default function PostsPage() {
     setLoading(true)
     if (!router.query || !router.query.posts) return
     try {
-      const { data } = await axios.get(`${process.env.NEXT_PUBLIC_HOST}/api/posts/get`);
+      const { data } = await axios.get(
+        `${process.env.NEXT_PUBLIC_HOST}/api/posts/get`
+      )
       if (data) {
         setPosts(data.posts)
         setLoading(false)
@@ -21,18 +24,33 @@ export default function PostsPage() {
       }
     } catch (error) {
       router.replace('/404')
-      console.error('Error getting the post:', error);
-
+      console.error('Error getting the post:', error)
     }
-  };
+  }
 
   useEffect(() => {
-    getPosts();
+    getPosts()
+  }, [router.query])
 
-  }, [router.query]);
+  const capitalizeText = (text) => {
+    return text.replace(/\b\w/g, char => char.toUpperCase());
+  };
+
+  const capitalizedCategory = capitalizeText(postCategory);
   return (
     <>
-      <PostsLayout posts={posts} loading={loading} postCategory={postCategory} />
+      <Head>
+        {postCategory && (
+          <title>
+            {capitalizedCategory} - TheFreedom News - Stay Informed and Reflect
+          </title>
+        )}
+      </Head>
+      <PostsLayout
+        posts={posts}
+        loading={loading}
+        postCategory={postCategory}
+      />
     </>
   )
 }
