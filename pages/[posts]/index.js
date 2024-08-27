@@ -33,10 +33,15 @@ export default function PostsPage() {
   }, [router.query])
 
   const capitalizeText = (text) => {
+    // Ensure 'text' is defined and is a string before calling 'replace'
+    if (typeof text !== 'string') {
+      return '';
+    }
     return text.replace(/\b\w/g, char => char.toUpperCase());
   };
-
-  const capitalizedCategory = capitalizeText(postCategory);
+  
+  const capitalizedCategory = postCategory && capitalizeText(postCategory);
+  
   return (
     <>
       <Head>
