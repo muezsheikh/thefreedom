@@ -1,102 +1,60 @@
-import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
-// import Swiper core and required modules
-import { Navigation, Pagination, A11y, Autoplay } from 'swiper/modules'
+import styles from '@/styles/client/Home.module.css'
+import Slider from 'react-slick'
+import HeroLoader from './hero-loader'
+import useGetProd from '@/store/useGetProd'
+import Link from 'next/link'
+import useGetData from '@/store/useGetData'
+export default function HeroSection() {
+  const { data, loading, fetchData } = useGetData()
+  const { getCustomFunc } = useGetProd()
 
-import { Swiper, SwiperSlide } from 'swiper/react'
+  useEffect(() => {
+    fetchData('posts/get')
+  }, [fetchData])
 
-// Import Swiper styles
-import 'swiper/css'
-import 'swiper/css/navigation'
-import 'swiper/css/pagination'
-import Image from 'next/image'
-
-export default function HeroSection({ posts, loading }) {
-  const banners = posts?.filter((item) => item.banner)
-
+  const banners = data?.posts?.filter((item) => item.banner).slice(0, 5)
+  var settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  }
   return (
-    <div className='container'>
+    <>
       {loading ? (
         <>
-          <div className='heroSkeletonContainer'>
-            <div className='skeleton-element'></div>
-          </div>
+          <HeroLoader />
         </>
       ) : (
-        <div className='heroSection'>
-          <Swiper
-            // install Swiper modules
-            modules={[Navigation, Pagination, A11y, Autoplay]}
-            spaceBetween={0}
-            slidesPerView={1}
-            autoplay={{
-              disableOnInteraction: false,
-              delay: 2500,
-            }}
-            navigation
-            pagination={{ clickable: true }}
-          >
-            {banners.map((banner) => (
-              <SwiperSlide key={banner._id}>
-                <div className='post-style-one post-style-one-hero'>
-                  <div className='img'>
-                    {banner.image && (
-                      <Image
-                        src={banner.image}
-                        alt=''
-                        width={500}
-                        height={300}
-                      />
-                    )}
-                  </div>
-                  <div className='body'>
-                    {banner.category && (
-                      <h3 className='catHeading'>{banner.category}</h3>
-                    )}
-                    {banner.title && (
-                      <Link
-                        href={`/${banner.category}/posts/${
-                          banner.postCustomId
-                            ? `${banner.postCustomId}`
-                            : `${banner._id}`
-                        }`}
-                        style={{ color: 'white' }}
-                      >
-                        <h1>{banner.title}</h1>
-                      </Link>
-                    )}
-                    {banner.date && <p>{banner.date}</p>}
-                  </div>
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-          <div className='heroBoxes'>
-            {banners &&
-              banners.slice(0, 2).map((banner) => (
-                <div className='post-style-one' key={banner._id}>
-                  <div className='img'>
-                    <img src={banner.image} alt='' />
-                  </div>
-                  <div className='body'>
-                    <h3>{banner.category}</h3>
-                    <Link
-                    href={`/${banner.category}/posts/${
-                      banner.postCustomId
-                        ? `${banner.postCustomId}`
-                        : `${banner._id}`
+        <>
+          <Slider {...settings}>
+            {banners?.map((item) => (
+              <div className={styles.heroSection} key={item._id}>
+                <img
+                  src={item?.image}
+                  alt='Event Image'
+                  className={styles.heroImage}
+                />
+                <div className={styles.overlay}></div>
+                <div className={styles.body}>
+                  <Link
+                    className={styles.title}
+                    onClick={() => getCustomFunc(item)}
+                    href={`/${item?.category}/${
+                      !item.postCustomId ? item._id : item.postCustomId
                     }`}
-                      style={{ color: 'white' }}
-                    >
-                      <h1>{banner.title}</h1>
-                    </Link>
-                    <p>{banner.date}</p>
-                  </div>
+                  >
+                    <h3>{item.title}</h3>
+                  </Link>
+                  <p className={styles.date}>{item?.date}</p>
                 </div>
-              ))}
-          </div>
-        </div>
+              </div>
+            ))}
+          </Slider>
+        </>
       )}
-    </div>
+    </>
   )
 }

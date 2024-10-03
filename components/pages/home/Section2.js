@@ -1,84 +1,50 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import styles from '@/styles/client/Home.module.css'
+import HeroLoader from './hero-loader'
+import useGetProd from '@/store/useGetProd'
 import Link from 'next/link'
+import useGetData from '@/store/useGetData'
+export default function Section2() {
+  const { data, loading, fetchData } = useGetData()
+  const { getCustomFunc } = useGetProd()
 
-export default function Section2({ loading, posts }) {
-  const pakPosts = posts.filter((item) => item.category === 'pakistan')
+  useEffect(() => {
+    fetchData('posts/get')
+  }, [fetchData])
 
   return (
-    <div className='section2MainContainer sectionContainer'>
-      <div className='sectionContainerTitle'>
-        <h3>Pakistan</h3>
-        <Link href={'/pakistan'}>
-          <p>View All</p>
-        </Link>
-      </div>
-      <div className='section2Container'>
-        {loading ? (
-          <>
-            <div className='heroSkeletonContainer'>
-              <div className='skeleton-element'></div>
-            </div>
-          </>
-        ) : (
-          <>
-            <div className='post-style-one'>
-              <div className='img'>
-                {pakPosts && <img src={pakPosts[0]?.image} alt='' />}
-              </div>
-              <div className='body'>
-                <h3>{pakPosts[0]?.category}</h3>
-                <Link
-                  href={`/${pakPosts[0]?.category}/posts/${
-                    pakPosts[0]?.postCustomId
-                      ? `${pakPosts[0]?.postCustomId}`
-                      : `${pakPosts[0]?._id}`
-                  }`}
-                >
-                  <h1>{pakPosts[0]?.title}</h1>
-                </Link>
-                <p>{pakPosts[0]?.date}</p>
-              </div>
-            </div>
-          </>
-        )}
-
-        <div className='section2Boxes'>
-          {loading ? (
-            <>
-              <div className='heroSkeletonContainer heroSkeletonContainerSection2'>
-                <div className='skeleton-element'></div>
-                <div className='skeleton-element'></div>
-                <div className='skeleton-element'></div>
-                <div className='skeleton-element'></div>
-              </div>
-            </>
-          ) : (
-            pakPosts &&
-            pakPosts.slice(0, 4).map((post) => {
-              return (
-                <div className='post-style' key={post._id}>
-                  <div className='img'>
-                    {post.image && <img src={post?.image} alt='' />}
+    <>
+      {loading ? (
+        <>
+          <HeroLoader />
+        </>
+      ) : (
+        <>
+          <div className={styles.section2}>
+            <h2>Most Recent Posts</h2>
+            <div className={styles.posts}>
+              {data?.posts?.slice(0, 5).map((item) => (
+                <div className={styles.post} key={item._id}>
+                  <div className={styles.postImg}>
+                    <img src={item.image} alt='' />
                   </div>
-                  <div className='body'>
-                    <h3 className='categoryName'>{post.category}</h3>
+                  <div className={styles.postBody}>
                     <Link
-                      href={`/${post?.category}/posts/${
-                        post?.postCustomId
-                          ? `${post?.postCustomId}`
-                          : `${post?._id}`
+                      onClick={() => getCustomFunc(item)}
+                      href={`/${item?.category}/${
+                        !item.postCustomId ? item._id : item.postCustomId
                       }`}
                     >
-                      <h1>{post.title}</h1>
+                      <p className={styles.postTitle}>{item.title}</p>
                     </Link>
-                    <p>{post.date}</p>
+                    <p className={styles.postDate}>{item.date}</p>
                   </div>
                 </div>
-              )
-            })
-          )}
-        </div>
-      </div>
-    </div>
+              ))}
+            </div>
+          </div>
+        </>
+      )}
+    </>
   )
 }

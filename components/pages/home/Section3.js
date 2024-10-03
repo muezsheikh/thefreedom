@@ -1,53 +1,58 @@
+import React, { useEffect } from 'react'
+import styles from '@/styles/client/home/Section3.module.css'
+import useGetProd from '@/store/useGetProd'
 import Link from 'next/link'
-import React from 'react'
+import useGetData from '@/store/useGetData'
+export default function Section3() {
+  const { data, loading, fetchData } = useGetData()
+  const { getCustomFunc } = useGetProd()
 
-export default function Section3({ posts, loading }) {
-  const enPosts = posts.filter((item) => item.category == 'environment')
+  useEffect(() => {
+    fetchData('posts/get')
+  }, [fetchData])
+
+  const categories = [
+    'pakistan',
+    'environment',
+    'education',
+    'sports',
+    'fashion-and-style',
+  ]
+  const categoryProd = (cat) => {
+    return data?.posts?.filter((item) => item.category === cat).slice(0, 6)
+  }
 
   return (
-    <div className='sectionContainer section3'>
-      <div className='sectionContainerTitle'>
-        <Link style={{ color: 'black' }} href={'/environment'}>
-          <h3>Environment</h3>
-        </Link>
-
-        <Link href={'/environment'}>
-          <p>View All</p>
-        </Link>
-      </div>
-      <div className='section3Container'>
-        {loading ? (
-          <>
-            <div className='heroSkeletonContainer' style={{ width: '100%' }}>
-              <div className='skeleton-element' style={{ width: '100%' }}></div>
+    <>
+      {categories.map((category, ind) => (
+        <React.Fragment key={ind}>
+          <div className={styles.section3}>
+            <h2 style={{ textTransform: 'capitalize' }}>{category}</h2>
+            <div className={styles.posts}>
+              {categoryProd(category)?.map((item) => (
+                <div className={styles.post} key={item._id}>
+                  <div className={styles.postImg}>
+                    <img src={item.image} alt='' />
+                  </div>
+                  <div className={styles.postBody}>
+                    <Link
+                      onClick={() => getCustomFunc(item)}
+                      href={`/${item?.category}/${
+                        !item.postCustomId ? item._id : item.postCustomId
+                      }`}
+                    >
+                      <p className={styles.postTitle}>{item.title}</p>
+                    </Link>
+                    <p className={styles.postDate}>{item.date}</p>
+                  </div>
+                </div>
+              ))}
             </div>
-          </>
-        ) : (
-          enPosts &&
-          enPosts.slice(0, 6).map((post) => {
-            return (
-              <div className='post-style' key={post._id}>
-                <div className='img'>
-                  {post.image && <img src={post.image} alt='' />}
-                </div>
-                <div className='body'>
-                  <h3>{post.category}</h3>
-                  <Link
-                    href={`/${post?.category}/posts/${
-                      post?.postCustomId
-                        ? `${post?.postCustomId}`
-                        : `${post?._id}`
-                    }`}
-                  >
-                    <h1>{post.title}</h1>
-                  </Link>
-                  <p>{post.date}</p>
-                </div>
-              </div>
-            )
-          })
-        )}
-      </div>
-    </div>
+            <h3 className={styles.btn}>View more</h3>
+          </div>
+          <hr />
+        </React.Fragment>
+      ))}
+    </>
   )
 }

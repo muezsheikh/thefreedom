@@ -1,10 +1,8 @@
-import AdminLayout from '@/components/admin/AdminLayout'
+import AdminLayout from '@/components/admin/admin-layout'
 import EditPost from '@/components/admin/EditPost'
 import withAuth from '@/hoc/withAuth'
 
- function EditPostPage() {
-  
-  
+function EditPostPage() {
   return (
     <div>
       <AdminLayout>

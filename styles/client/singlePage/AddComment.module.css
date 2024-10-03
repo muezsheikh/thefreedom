@@ -1,0 +1,105 @@
+.addComment {
+  margin-top: 40px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  padding: 20px;
+  background-color: #f8f8f8;
+}
+
+.head h3 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.head p {
+  color: #555;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.form {
+  margin-top: 20px;
+}
+
+.input {
+  margin-bottom: 15px;
+}
+
+.input input,
+.input textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  background-color: #fff;
+  transition: border-color 0.3s ease;
+}
+
+.input input:focus,
+.input textarea:focus {
+  border-color: #16447f;
+  outline: none;
+}
+
+.addComment .inputMsg {
+  border-color: red;
+}
+
+.addComment textarea {
+  resize: none;
+  height: 120px;
+}
+
+.addComment button {
+  padding: 12px 20px;
+  background-color: #16447f;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.addComment button:hover {
+  background-color: #0e3360;
+}
+.loader {
+  width: 20px;
+  height: 20px;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  border-top-color: #16447f;
+  animation: spin 1s infinite linear;
+  margin: 0 auto;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.success {
+  background-color: #4caf50 !important;
+  cursor: default !important;
+}
+/* Responsive Design */
+@media (max-width: 768px) {
+  .addComment {
+    padding: 15px;
+  }
+
+  .head h3 {
+    font-size: 20px;
+  }
+
+  .head p {
+    font-size: 13px;
+  }
+
+  .addComment button {
+    width: 100%;
+    text-align: center;
+  }
+}

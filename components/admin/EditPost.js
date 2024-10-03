@@ -16,6 +16,7 @@ const ReactQuill = dynamic(() => import('react-quill'), { ssr: false })
 
 export default function EditPost() {
   const router = useRouter()
+  console.log(router)
   const [postContent, setPostContent] = useState({
     title: '',
     content: '',
@@ -134,7 +135,7 @@ export default function EditPost() {
     try {
       const loadingToast = toast.info('Loading...', { autoClose: false })
       // Assuming postId is defined somewhere in your component state
-      const postId = router.query.editpost[1]
+      const postId = router?.query.editpost[1]
       const { data } = await axios.get(
         `${process.env.NEXT_PUBLIC_HOST}/api/posts/onepost/${postId}`
       )

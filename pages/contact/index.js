@@ -1,125 +1,137 @@
+import React, { useState } from 'react'
+import styles from '@/styles/client/Contact.module.css'
+import Layout from '../layout'
 import Head from 'next/head'
-import { useRouter } from 'next/router'
-import { useState } from 'react'
-import { toast } from 'react-toastify'
+import axios from 'axios'
+export default function Contact() {
+  const [loading, setLoading] = useState(false)
+  const [success, setSuccess] = useState(false)
 
-export default function ContactPage() {
-  const router = useRouter()
   const [inputGroup, setInputGroup] = useState({
-    name: '',
-    email: '',
-    message: '',
+    name: { data: '', check: false },
+    email: { data: '', check: false },
+    message: { data: '', check: false },
   })
   const inputChangeHandler = (e) => {
     const name = e.target.name
     const value = e.target.value
-    setInputGroup({ ...inputGroup, [name]: value })
+    setInputGroup({ ...inputGroup, [name]: { data: value } })
   }
 
+  const successMsgDisable = () => {
+    setTimeout(() => {
+      setSuccess(false)
+    }, 1000)
+  }
+  const reset = () => {
+    setInputGroup({
+      name: { data: '', check: false },
+      email: { data: '', check: false },
+      message: { data: '', check: false },
+    })
+  }
   const submitMsgFunc = async () => {
-    if (inputGroup.name === '') {
-      return toast.error('Name Please!😊')
+    if (inputGroup.name.data === '') {
+      return setInputGroup({ ...inputGroup, name: {...inputGroup.name, check: true} })
     }
-    if (inputGroup.email === '') {
-      return toast.error('Oh Come on! Where is your email?')
+    if (inputGroup.email.data === '') {
+      return setInputGroup({ ...inputGroup, email: {...inputGroup.email, check: true} })
+
     }
-    if (inputGroup.message === '') {
-     return toast.error("bro! you didn't write a message🙄")
+    if (inputGroup.message.data === '') {
+      return setInputGroup({ ...inputGroup, message: {...inputGroup.message, check: true} })
+
     }
     try {
-      // Display loading message
-      const loadingToast = toast.info('sending...', { autoClose: false })
+      setLoading(true)
+      setSuccess(false)
 
-      // Get present date in a nice human-readable format
       const currentDate = new Date().toLocaleString()
 
-      // Create post details object
       const msgDetails = {
-        name: inputGroup.name,
-        email: inputGroup.email,
-        message: inputGroup.message,
+        name: inputGroup.name.data,
+        email: inputGroup.email.data,
+        message: inputGroup.message.data,
         date: currentDate,
       }
 
-      // Send post details to the API
-      const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/message/send`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(msgDetails),
-      })
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_HOST}/api/message/send`,
+        msgDetails
+      )
 
-      if (response.ok) {
-        // Close the loading message
-        toast.dismiss(loadingToast)
-        // Display s success message
-        toast.success('Send Message successfully!', { autoClose: 1500 })
-
-        // Reload the page or handle navigation as needed
-        router.reload()
+      if (response) {
+        setLoading(false)
+        setSuccess(true)
+        successMsgDisable()
+        reset()
       } else {
-        // Display error message
-        toast.error(
+        console.log(
           `Error posting the data. Status: ${response.status}, ${response.statusText}`
         )
       }
     } catch (error) {
       console.error('Error submitting the form:', error)
-      // Display error message
-      toast.error(
-        `Error submitting the form. Please try again. ${error.message}`
-      )
     }
   }
-
   return (
     <>
-    <Head>
-    <title>Contact - TheFreedom News - Stay Informed and Reflect</title>
-    </Head>
-    <div className='contactPage'>
-      <div className='container'>
-        <div className='AwesomeCommentSection'>
-          <div className='commentTitle'>
+      <Head>
+        <title>Contact - The Freedom - Stay informed and reflect</title>
+      </Head>
+      <Layout>
+        <div className={styles.contactContainer}>
+          <div className={styles.contact}>
             <h3>Wanna talk?</h3>
-            <p>We Pleasure to listen you!</p>
-          </div>
-          <div className='commentContent'>
-            <div className='inputGroup'>
-              <input
-                value={inputGroup.name}
-                onChange={inputChangeHandler}
-                name='name'
-                type='text'
-                placeholder='Your Name*'
-              />
+            <p>We plasure to listen you!</p>
+            <div className={styles.form}>
+              <div className={styles.input}>
+                <input
+                  className={inputGroup.name.check ? styles.inputMsg : ''}
+                  name='name'
+                  value={inputGroup.name.data}
+                  type='text'
+                  placeholder='Your Name*'
+                  onChange={inputChangeHandler}
+                />
+              </div>
+              <div className={styles.input}>
+                <input
+                  className={inputGroup.email.check ? styles.inputMsg : ''}
+                  name='email'
+                  value={inputGroup.email.data}
+                  type='email'
+                  placeholder='Your Email*'
+                  onChange={inputChangeHandler}
+                />
+              </div>
+              <div className={styles.input}>
+                <textarea
+                  className={inputGroup.message.check ? styles.inputMsg : ''}
+                  name='message'
+                  value={inputGroup.message.data}
+                  onChange={inputChangeHandler}
+                  placeholder='Your Message*'
+                  id=''
+                ></textarea>
+              </div>
+              <button
+                className={`${styles.button} ${success ? styles.success : ''}`}
+                onClick={submitMsgFunc}
+                disabled={loading}
+              >
+                {loading ? (
+                  <div className={styles.loader}></div>
+                ) : success ? (
+                  'Sent successfully'
+                ) : (
+                  'Send'
+                )}
+              </button>
             </div>
-            <div className='inputGroup'>
-              <input
-                type='email'
-                value={inputGroup.email}
-                onChange={inputChangeHandler}
-                name='email'
-                placeholder='Your Email*'
-              />
-            </div>
-            <div className='inputGroup'>
-              <textarea
-                value={inputGroup.message}
-                onChange={inputChangeHandler}
-                name='message'
-                placeholder='Your Message*'
-              ></textarea>
-            </div>
-          </div>
-          <div className='submitBtn'>
-            <button onClick={submitMsgFunc}>Send</button>
           </div>
         </div>
-      </div>
-    </div>
+      </Layout>
     </>
-
   )
 }

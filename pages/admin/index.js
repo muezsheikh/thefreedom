@@ -1,12 +1,19 @@
-import AdminLayout from '@/components/admin/AdminLayout'
+import AdminLayout from '@/components/admin/admin-layout'
+import Head from 'next/head'
+import React from 'react'
+import styles from '@/styles/admin/NewPost.module.css'
 import withAuth from '@/hoc/withAuth'
-import axios from 'axios'
-import { useRouter } from 'next/router'
-import React, { useEffect, useState } from 'react'
-function AdminPage() {
+import NewPost from '@/components/admin/NewPost'
+
+const AdminPage = () => {
   return (
     <div>
-      <AdminLayout></AdminLayout>
+      <Head>
+        <title>Add New Post - Admin Panel - The Freedom</title>
+      </Head>
+      <AdminLayout>
+        <NewPost />
+      </AdminLayout>
     </div>
   )
 }

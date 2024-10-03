@@ -1,0 +1,137 @@
+.heroSection {
+  position: relative;
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: #000; /* Fallback for image load failure */
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.heroImage {
+  transition: transform 0.5s ease-in-out;
+}
+
+.heroImage:hover {
+  transform: scale(1.05);
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7));
+  z-index: 1;
+}
+
+.body {
+  position: absolute;
+  bottom: 30px;
+  z-index: 2;
+  padding: 20px;
+  text-align: center;
+  color: #fff;
+  width: 80%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin: 0;
+  line-height: 1.2;
+  text-shadow: 0px 4px 8px rgba(0, 0, 0, 0.4);
+  color: white;
+}
+
+.date {
+  font-size: 1rem;
+  margin-top: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #ccc;
+}
+
+@media (max-width: 1024px) {
+  .title {
+    font-size: 2rem;
+  }
+  .date {
+    font-size: 0.8rem;
+  }
+}
+@media (max-width: 769px) {
+  .heroSection {
+    height: 700px;
+  }
+  .body {
+    bottom: 60px;
+    width: 100%;
+  }
+}
+/* seciton2  */
+.section2 {
+  padding: 50px 20px;
+  background-color: #f9f9f9;
+}
+
+.section2 h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+  color: #333;
+  font-weight: bold;
+}
+
+.posts {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 30px;
+}
+
+.post {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.post:hover {
+  transform: translateY(-10px);
+}
+
+.postImg img {
+  height: 200px;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.postBody {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.postTitle {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.postTitle:hover {
+  color: #0070f3;
+  cursor: pointer;
+}
+
+.postDate {
+  font-size: 0.9rem;
+  color: #888;
+  margin-top: auto;
+}

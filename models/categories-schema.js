@@ -6,3 +6,7 @@ const catSchema = new mongoose.Schema({
 })
 
 export default mongoose.models.categories || mongoose.model('categories', catSchema)
+
+
+
+

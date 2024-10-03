@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { useRouter } from 'next/router'
-import ReactQuillSection from './newpost/ReactQuillSection'
-import { SubmitBtn } from './newpost/SubmitBtn'
-import Categories from './newpost/Categories'
-import ImageUp from './newpost/ImageUp'
+import ReactQuillSection from './newPost/ReactQuillSection'
+import { SubmitBtn } from './newPost/SubmitBtn'
+import Categories from './newPost/Categories'
+import ImageUp from './newPost/ImageUp'
 import { useEffect } from 'react'
 import axios from 'axios'
 
@@ -140,10 +140,10 @@ export default function NewPost() {
                 ))}
               </div>
             </div>
-            <div className='inputGroup' style={{ marginTop: '1rem' }}>
+            {/* <div className='inputGroup' style={{ marginTop: '1rem' }}>
               <label>Custom Date:</label>
               <input type='date' onChange={handleDateChange} />
-            </div>
+            </div> */}
             <div className='inputGroup'>
               <label>Post by:</label>
               <input

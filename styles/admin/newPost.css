@@ -1,0 +1,146 @@
+.newPost {
+  background-color: #f8f8f8;
+  padding: 20px;
+}
+
+.newPostContainer {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.newPostContainer .title {
+  background-color: #3498db;
+  color: #fff;
+  padding: 15px;
+  text-align: center;
+}
+
+.newPostContent {
+  padding: 20px;
+}
+
+.inputGroup {
+  margin-bottom: 15px;
+}
+
+.inputGroup label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.inputGroup input,
+.inputGroup textarea,
+.inputGroup select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+.inputGroupB {
+  display: flex;
+  gap: 10px;
+}
+.inputGroupB input {
+  width: fit-content;
+}
+.uploadText {
+  margin-top: 5px;
+  color: #666;
+}
+
+.checkbox {
+  display: inline-block;
+  margin-left: 5px;
+}
+
+.categories {
+  margin-bottom: 10px;
+}
+
+.submitButton button {
+  background-color: #3498db;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.submitButton button:hover {
+  background-color: #2980b9;
+}
+/*  */
+.tagsContent {
+  background-color: #333;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+    rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+.tagsContent button {
+  border: none;
+  width: 27px;
+  height: 27px;
+  background-color: red;
+  color: white;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.tagsContent button:hover {
+  background-color: rgb(158, 4, 4);
+}
+
+@media (max-width: 578px) {
+  .tagsContainer {
+    flex-direction: column;
+  }
+  .tagsContent {
+    gap: 0px;
+    justify-content: space-between;
+  }
+}
+
+.newCategory {
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+    rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+  padding: 10px;
+  display: none;
+}
+.newCategory.activeCat {
+  display: block;
+}
+
+.uploadedImg {
+  position: relative;
+  width: fit-content;
+}
+.uploadedImg button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 5px;
+  background-color: red;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 3px;
+  transition: all 0.3s;
+}
+.uploadedImg button:hover {
+  background-color: rgb(130, 9, 9);
+}
