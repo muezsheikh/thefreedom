@@ -1,6 +1,7 @@
 .newPost {
   background-color: #f8f8f8;
-  padding: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .newPostContainer {
