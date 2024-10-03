@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { useRouter } from 'next/router'
-import ReactQuillSection from './newPost/ReactQuillSection'
-import { SubmitBtn } from './newPost/SubmitBtn'
-import Categories from './newPost/Categories'
-import ImageUp from './newPost/ImageUp'
+import ReactQuillSection from './newpost/ReactQuillSection'
+import { SubmitBtn } from './newpost/SubmitBtn'
+import Categories from './newpost/Categories'
+import ImageUp from './newpost/ImageUp'
 import { useEffect } from 'react'
 import axios from 'axios'
 

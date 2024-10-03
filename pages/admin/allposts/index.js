@@ -5,7 +5,7 @@ import styles from '@/styles/admin/AllPosts.module.css'
 import axios from 'axios'
 import withAuth from '@/hoc/withAuth'
 import DeleteModal from '@/components/admin/DeleteModal'
-import Comments from '@/components/admin/newPost/Comments'
+import Comments from '@/components/admin/newpost/Comments'
 import Link from 'next/link'
 
 const AllPosts = () => {
