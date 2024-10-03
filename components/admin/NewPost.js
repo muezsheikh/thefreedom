@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { useRouter } from 'next/router'
 import ReactQuillSection from './newpost/ReactQuillSection'
 import { SubmitBtn } from './newpost/SubmitBtn'
 import Categories from './newpost/Categories'
