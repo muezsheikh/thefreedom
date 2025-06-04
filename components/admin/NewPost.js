@@ -1,8 +1,8 @@
 import React, { useState,useEffect } from 'react'
-import ReactQuillSection from './newpost/ReactQuillSection'
-import { SubmitBtn } from './newpost/SubmitBtn'
-import Categories from './newpost/Categories'
-import ImageUp from './newpost/ImageUp'
+import ReactQuillSection from '@/components/admin/newpost/ReactQuillSection'
+import { SubmitBtn } from '@/components/admin/newpost/SubmitBtn'
+import Categories from '@/components/admin/newpost/Categories'
+import ImageUp from '@/components/admin/newpost/ImageUp'
 import axios from 'axios'
 
 export default function NewPost() {
