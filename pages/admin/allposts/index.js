@@ -116,7 +116,12 @@ const AllPosts = () => {
                   )}
                   <p className={styles.postDate}>Date: {post.date}</p>
                   <div className={styles.actions}>
-                    <Link href={`/admin/editposts/${post._id}`} className={styles.editButton}>Edit</Link>
+                    <Link
+                      href={`/admin/editposts/${post._id}`}
+                      className={styles.editButton}
+                    >
+                      Edit
+                    </Link>
                     <button
                       className={styles.deleteButton}
                       onClick={() => deleteModalFunc(post?._id)}
@@ -129,6 +134,16 @@ const AllPosts = () => {
                     >
                       Comments
                     </button>
+                  </div>
+                  <div>
+                    <div className='input'>
+                      <input type='checkbox' name='' id='public' />
+                      <label htmlFor='public'>Public</label>
+                    </div>
+                    <div className='input'>
+                      <input type='checkbox' name='' id='private' />
+                      <label htmlFor='private'>Private</label>
+                    </div>
                   </div>
                 </div>
               </div>

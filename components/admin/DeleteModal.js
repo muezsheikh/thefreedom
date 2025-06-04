@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from '@/styles/admin/Modals.module.css';
-
+import axios from 'axios';
 const DeleteModal = ({ deleteModalFunc,postId }) => {
   const fetchPosts = async () => {
     setLoading(true)
